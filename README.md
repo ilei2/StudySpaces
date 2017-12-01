@@ -5,6 +5,7 @@ Best places to study on UIUC campus
 ### Completed
 - Functional Prototype / Storyboard: everyone
 - User Authentication: Alicia
+- Environment setup (package.json, gitignore): Ivy
 
 ### To do
 - database model: Ivy, Alicia(?)
