@@ -1,14 +1,14 @@
 # StudySpace
 Best places to study on UIUC campus
 
-# 12/1
+# 12/1 - 12/3
 ### Completed
 - Functional Prototype / Storyboard: everyone
 - User Authentication: Alicia
 - Environment setup (package.json, gitignore): Ivy
+- Database Models (User, Reviews): Alicia, Ivy
 
 ### To do
-- database model: Ivy, Alicia(?)
 - Front End components: Jasmine(?), Kirsten(?), Michelle(?)
 - Look into Google or other API: Michelle (?)
 
