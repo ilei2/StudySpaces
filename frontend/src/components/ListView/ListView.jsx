@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './Signup.scss';
+import styles from './ListView.scss';
 
-class Signup extends Component {
+class ListView extends Component {
   render() {
     return (
-      <h1>Signup Component</h1>
+      <h1>ListView Component</h1>
     )
   }
 }
 
-export default Signup
+export default ListView

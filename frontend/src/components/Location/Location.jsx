@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from './Signup.scss';
+import styles from './Location.scss';
 
-class Signup extends Component {
+class Location extends Component {
   render() {
     return (
-      <h1>Signup Component</h1>
+      <h1>Location Component</h1>
     )
   }
 }
 
-export default Signup
+export default Location
