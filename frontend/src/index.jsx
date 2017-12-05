@@ -4,7 +4,8 @@ import {render} from 'react-dom';
 import {
   BrowserRouter as Router,
   Route,
-  Link} from 'react-router-dom'
+  Link} from 'react-router-dom';
+import 'semantic-ui-css/semantic.min.css';
 
 import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login.jsx';
@@ -13,6 +14,8 @@ import Location from './components/Location/Location.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import ListView from './components/ListView/ListView.jsx';
 import Review from './components/Review/Review.jsx';
+
+require('./main.scss');
 
   render(
     <Router>
