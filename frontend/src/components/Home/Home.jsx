@@ -7,7 +7,8 @@ import {
   Image,
   Dropdown,
   Form,
-  Checkbox
+  Checkbox,
+  Menu
  }
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -32,6 +33,14 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <div className="ui top fixed menu">
+          <div className="item">
+            <img src="../../assets/whale.png"/>
+          </div>
+          <a className="item">Something</a>
+          <a className="item">Login</a>
+          <a className="item">Signup</a>
+        </div>
         <h1>Home Component</h1>
         <Search
           placeholder='i.e. Cafes near me'
@@ -79,7 +88,12 @@ class Home extends Component {
               />
             </Form.Field>
           </Form>
-          <Button color="blue">Submit</Button>
+          <Button
+            color="grey"
+            className="ui home-submit-btn"
+          >
+              Submit
+          </Button>
       </div>
     )
   }
