@@ -65,7 +65,7 @@ class Signup extends Component {
     return (
       <div>
         <TopBar/>
-        <form className="Register" action="/" onSubmit={this.onSubmit}>
+        <form className="Register test" action="/" onSubmit={this.onSubmit}>
           <Card className="Register__content">
             <div>
               <h1>Register</h1>
