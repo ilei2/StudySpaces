@@ -3,9 +3,10 @@ Best places to study on UIUC campus
 
 # 12/4
 ### Completed
+- Home, Review structure: Ivy
+- Location structure: Kirsten
 
 ### To do
-- Home view: Ivy
 - Nav bar component: Ivy/Kirsten
 - Login/Signup view: Kirsten
 - Location: Jasmine
