@@ -8,12 +8,13 @@ import {
   Dropdown,
   Form,
   Checkbox,
-  Menu
+  Menu,
+  Icon
  }
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styles from './Home.scss';
-import TopBar from '../TopBar/Topbar.jsx';
+import TopBar from '../TopBar/TopBar.jsx';
 
 class Home extends Component {
   constructor(props){
