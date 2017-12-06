@@ -51,10 +51,10 @@ module.exports = function(passport) {
             if ( err ) {
                 return done(err);
             } else if ( !user) {
-                return done(null, false, {message: 'Incorrect username.'});
+                return done(null, false, {message: 'Email does not exist'});
             } else if (!user.validPassword(password) ) {
                 console.log("in local-login login failed");
-                return done(null, false, {message: 'Incorrect password.'});
+                return done(null, false, {message: 'Email and password does not match'});
             }
 
             console.log('verify is done');

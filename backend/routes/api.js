@@ -1,14 +1,20 @@
 module.exports = function(router, passport) {
 
-/*
-    router.post('/signup',
-        passport.authenticate('local-signup'),
-        function(req, res) {
-            console.log("/signup" + req.user.email);
-            res.status(200).json({ user: req.user.email
-        });
+    router.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
     });
-*/
+
+    /*
+        router.post('/signup',
+            passport.authenticate('local-signup'),
+            function(req, res) {
+                console.log("/signup" + req.user.email);
+                res.status(200).json({ user: req.user.email
+            });
+        });
+    */
 
     router.post('/signup', function(req, res, next){
         passport.authenticate('local-signup', function(err, user, info) {
@@ -20,7 +26,7 @@ module.exports = function(router, passport) {
                 return res.json(401, { "error": info.message });
             }
             //Signup successful
-            res.status(200).json({ user: req.user.email});
+            res.status(200).json({ user: user.email});
         })(req, res, next);
     });
 
@@ -44,7 +50,8 @@ module.exports = function(router, passport) {
 
             if (!user) {
                 //Authentication failed
-                return res.json(401, { "error": info.message });
+                //return res.json(401, { "error": info.message });
+                return res.status(204).json({code:204, success: info.message});
             }
             //Authentication successful
             console.log("req--" + req.user);
@@ -53,7 +60,8 @@ module.exports = function(router, passport) {
                 if (err) {
                     return next(err);
                 }
-                return res.status(200).json({ user: req.user.email});
+    /*            return res.status(200).json({ user: user.email});*/
+                return res.status(200).json({code:200, success: "login successful"});
             });
         })(req, res, next);
     });
@@ -64,8 +72,8 @@ module.exports = function(router, passport) {
         isLoggedIn,
         function(req, res) {
             console.log(req.isAuthenticated());
-            res.status(200).json({ user: req.user, message: "Welcome!"
-        });
+            res.status(200).json({ user: req.email, message: "Welcome!"
+         });
     });
 
     router.get('/logout', function(req, res) {
