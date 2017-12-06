@@ -1,15 +1,13 @@
+'use strict'
 import React, { Component } from 'react'
-
-import { Button, Input, Card } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-
+import { Button, Input, Card } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import styles from './Signup.scss';
-
+import TopBar from '../TopBar/TopBar.jsx';
 
 class Signup extends Component {
-
 
   constructor() {
     super();
@@ -65,20 +63,23 @@ class Signup extends Component {
 
   render() {
     return (
-      <form className="Register" action="/" onSubmit={this.onSubmit}>
-        <Card className="Register__content">
-          <div>
-            <h1>Register</h1>
-            <Input label="Email" onChange={this.onChangeEmail} />
-            <br/><br/>
-            <Input label="Password" onChange={this.onChangePassword} />
-            <br/><br/>
-            <p>{this.state.message}</p>
-            <Input type="submit" />
-            <h4>Already registered? Click <Link to="/login">here</Link> to Log-in!</h4>
-          </div>
-        </Card>
-      </form>
+      <div>
+        <TopBar/>
+        <form className="Register" action="/" onSubmit={this.onSubmit}>
+          <Card className="Register__content">
+            <div>
+              <h1>Register</h1>
+              <Input label="Email" onChange={this.onChangeEmail} />
+              <br/><br/>
+              <Input label="Password" onChange={this.onChangePassword} />
+              <br/><br/>
+              <p>{this.state.message}</p>
+              <Input type="submit" />
+              <h4>Already registered? Click <Link to="/login">here</Link> to Log-in!</h4>
+            </div>
+          </Card>
+        </form>
+      </div>
     )
   }
 }
