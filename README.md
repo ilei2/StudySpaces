@@ -1,6 +1,17 @@
 # StudySpace
 Best places to study on UIUC campus
 
+# 12/4
+### Completed
+
+### To do
+- Home view: Ivy
+- Nav bar component: Ivy/Kirsten
+- Login/Signup view: Kirsten
+- Location: Jasmine
+- API functionality: Michelle
+- Incorporate User auth with login/signup: Alicia
+
 # 12/1 - 12/3
 ### Completed
 - Functional Prototype / Storyboard: everyone
