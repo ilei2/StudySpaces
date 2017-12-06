@@ -27,11 +27,30 @@ class Login extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
-
-    const email = encodeURIComponent(this.state.user.email);
-    const password = encodeURIComponent(this.state.user.password);
-    const formData = `email=${email}&password=${password}`;
+    // let apiBaseUrl = 'http://localhost:8080/';
+    // let self = this;
+    // let payload = {
+    //   "email": this.state.username,
+    //   "password": this.state.password
+    // }
+    // axios.post(apiBaseUrl+'login', payload)
+    //   .then(function (response) {
+    //     console.log(response);
+    //     if (response.data.code == 200) {
+    //       console.log("PASS!");
+    //     }
+    //     else if (response.data.code == 204) {
+    //       console.log("NO MATCH");
+    //       alert("username password do not match");
+    //     }
+    //     else {
+    //       console.log("NO EXIST");
+    //       alert("username does not exist");
+    //     }
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   })
   }
 
   onChangeEmail(e) {
@@ -60,7 +79,7 @@ class Login extends Component {
 
             <p>{this.state.message}</p>
             <Input type="submit" />
-            <h4>No account? Sign up <Link to="/register">here</Link></h4>
+            <h4>No account? Sign up <Link to="/signup">here</Link></h4>
 
           </div>
         </Card>
