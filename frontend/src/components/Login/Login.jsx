@@ -27,6 +27,13 @@ class Login extends Component {
   }
 
   onSubmit(e) {
+
+    e.preventDefault();
+
+    const email = encodeURIComponent(this.state.user.email);
+    const password = encodeURIComponent(this.state.user.password);
+    const formData = `email=${email}&password=${password}`;
+
     // let apiBaseUrl = 'http://localhost:8080/';
     // let self = this;
     // let payload = {
@@ -51,6 +58,7 @@ class Login extends Component {
     //   .catch(function (error) {
     //     console.log(error);
     //   })
+
   }
 
   onChangeEmail(e) {
@@ -79,7 +87,9 @@ class Login extends Component {
 
             <p>{this.state.message}</p>
             <Input type="submit" />
+
             <h4>No account? Sign up <Link to="/signup">here</Link></h4>
+
 
           </div>
         </Card>
