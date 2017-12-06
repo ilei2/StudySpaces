@@ -1,3 +1,4 @@
+'use strict'
 import React, { Component } from 'react'
 import { Button, Input, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
@@ -5,7 +6,7 @@ import { withRouter } from 'react-router'
 import axios from 'axios'
 
 import styles from './Login.scss';
-
+import TopBar from '../TopBar/TopBar.jsx';
 
 class Login extends Component {
 
@@ -76,24 +77,26 @@ class Login extends Component {
 
   render() {
     return (
-      <form className="Login" action="/" onSubmit={this.onSubmit}>
-        <Card className="Login__content">
-          <div>
-            <h1>Login</h1>
-            <Input label="Email" onChange={this.onChangeEmail} />
-            <br/><br/>
-            <Input label="Password" onChange={this.onChangePassword} />
-            <br/><br/>
+      <div>
+        <TopBar/>
+        <form className="Login" action="/" onSubmit={this.onSubmit}>
+          <Card className="Login__content">
+            <div>
+              <h1>Login</h1>
+              <Input label="Email" onChange={this.onChangeEmail} />
+              <br/><br/>
+              <Input label="Password" onChange={this.onChangePassword} />
+              <br/><br/>
 
-            <p>{this.state.message}</p>
-            <Input type="submit" />
+              <p>{this.state.message}</p>
+              <Input type="submit" />
 
-            <h4>No account? Sign up <Link to="/signup">here</Link></h4>
+              <h4>No account? Sign up <Link to="/signup">here</Link></h4>
 
-
-          </div>
-        </Card>
-      </form>
+            </div>
+          </Card>
+        </form>
+      </div>
     )
   }
 }

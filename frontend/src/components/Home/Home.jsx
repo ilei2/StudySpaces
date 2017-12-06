@@ -13,6 +13,7 @@ import {
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styles from './Home.scss';
+import TopBar from '../TopBar/Topbar.jsx';
 
 class Home extends Component {
   constructor(props){
@@ -33,15 +34,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-
-        <div className="ui top fixed menu">
-          <div className="item">
-            <img src="../../assets/whale.png"/>
-          </div>
-          <a className="item">Something</a>
-          <a className="item">Login</a>
-          <a className="item">Signup</a>
-        </div>
+        <TopBar/>
         <h1>Home Component</h1>
         <Search
           placeholder='i.e. Cafes near me'
