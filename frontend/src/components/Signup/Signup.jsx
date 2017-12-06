@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+
 import { Button, Input, Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+
 
 import styles from './Signup.scss';
 
 
 class Signup extends Component {
+
 
   constructor() {
     super();
@@ -58,6 +61,7 @@ class Signup extends Component {
     user.password = e.target.value;
     this.setState({user})
   }
+
 
   render() {
     return (
