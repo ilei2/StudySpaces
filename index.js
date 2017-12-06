@@ -18,6 +18,31 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+
+// Static routes
+/*
+app.route('/').get(function(req, res) {
+  return res.sendFile(path.join(__dirname, './backend/static/index.html'));
+});
+*/
+/*
+app.route('/login').get(function(req, res) {
+  return res.sendFile(path.join(__dirname, './backend/static/index.html'));
+});
+app.route('/register').get(function(req, res) {
+  return res.sendFile(path.join(__dirname, './backend/static/index.html'));
+});
+app.route('/dashboard').get(function(req,res) {
+  return res.sendFile(path.join(__dirname, './backend/static/index.html'));
+})
+*/
+
 /* New things ================================================================ */
 
 require('./backend/models').connect(config.dbUri);

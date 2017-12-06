@@ -35,30 +35,32 @@ class Login extends Component {
     const password = encodeURIComponent(this.state.user.password);
     const formData = `email=${email}&password=${password}`;
 
-    // let apiBaseUrl = 'http://localhost:8080/';
-    // let self = this;
-    // let payload = {
-    //   "email": this.state.username,
-    //   "password": this.state.password
-    // }
-    // axios.post(apiBaseUrl+'login', payload)
-    //   .then(function (response) {
-    //     console.log(response);
-    //     if (response.data.code == 200) {
-    //       console.log("PASS!");
-    //     }
-    //     else if (response.data.code == 204) {
-    //       console.log("NO MATCH");
-    //       alert("username password do not match");
-    //     }
-    //     else {
-    //       console.log("NO EXIST");
-    //       alert("username does not exist");
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   })
+    let apiBaseUrl = 'http://localhost:3000/api/';
+    let self = this;
+    let payload = {
+      "email": this.state.username,
+      "password": this.state.password
+    }
+    console.log("formData="+formData);
+    console.log(apiBaseUrl+'login '+payload);
+    axios.post(apiBaseUrl+'login?'+formData)
+      .then(function (response) {
+        console.log(response);
+        if (response.data.code == 200) {
+          console.log("PASS!");
+        }
+        else if (response.data.code == 204) {
+          console.log("NO MATCH");
+          alert("username password do not match");
+        }
+        else {
+          console.log("NO EXIST");
+          alert("username does not exist");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
 
   }
 

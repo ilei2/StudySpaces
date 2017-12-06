@@ -51,7 +51,7 @@ module.exports = function(router, passport) {
             if (!user) {
                 //Authentication failed
                 //return res.json(401, { "error": info.message });
-                return res.status(204).json({code:204, success: info.message});
+                return res.status(200).json({code:204, success: info.message});
             }
             //Authentication successful
             console.log("req--" + req.user);
