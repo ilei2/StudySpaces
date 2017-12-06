@@ -16,7 +16,8 @@ class Review extends Component {
       <div>
         <TopBar/>
         <h1>Reviewing [Location]</h1>
-        <div className="middle aligned grid ratings">
+        <div className="ratings">
+        <div className="middle aligned grid">
           <div className="ui items">
 
             <div className="ui grid">
@@ -102,7 +103,7 @@ class Review extends Component {
             </textarea>
           </div>
         </div>
-
+      </div>
         <Button
           className="blue"
         >Submit</Button>
