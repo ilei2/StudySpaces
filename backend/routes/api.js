@@ -26,7 +26,8 @@ module.exports = function(router, passport) {
                 return res.json(401, { "error": info.message });
             }
             //Signup successful
-            res.status(200).json({ user: user.email});
+            var msg = user.email + " signup successful";
+            res.status(200).json({code:200, success: msg});
         })(req, res, next);
     });
 
