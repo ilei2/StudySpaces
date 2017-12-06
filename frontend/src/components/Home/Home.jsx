@@ -33,6 +33,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+
         <div className="ui top fixed menu">
           <div className="item">
             <img src="../../assets/whale.png"/>

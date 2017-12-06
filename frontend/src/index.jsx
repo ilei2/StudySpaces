@@ -21,7 +21,7 @@ require('./main.scss');
     <Router>
       <div>
         <h1>Study Spaces</h1>
-        <Route path="/" component={Home}/>
+        <Route exact path="/" component={Home}/>
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/location" component={Location}/>
