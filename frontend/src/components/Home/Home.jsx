@@ -9,7 +9,10 @@ import {
   Form,
   Checkbox,
   Menu,
-  Icon
+  Icon,
+  Sidebar,
+  Segment,
+  Header
  }
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -31,7 +34,6 @@ class Home extends Component {
       value
     });
   }
-
   render() {
     return (
       <div>
