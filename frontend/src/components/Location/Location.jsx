@@ -55,7 +55,6 @@ class Location extends Component {
                     </div>
                   </div>
                 </div>
-
               </div>
 
 
@@ -98,7 +97,11 @@ class Location extends Component {
               </div>
             </div>
           </div>
-        <Button>Submit a review for this location!</Button>
+          <Link to={"/review"}>
+            <Button>
+              Submit a review for this location!
+            </Button>
+        </Link>
       </div>
     )
   }
