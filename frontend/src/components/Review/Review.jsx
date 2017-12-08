@@ -2,13 +2,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Rating,
   Form,
   Button
 } from 'semantic-ui-react';
+import Rating from 'react-rating';
 
 import styles from './Review.scss';
 import TopBar from '../TopBar/TopBar.jsx';
+
+// var Rating = require('react-rating');
 
 class Review extends Component {
   constructor(props){
@@ -23,115 +25,53 @@ class Review extends Component {
       text: "",
       location: ""
     }
-    //this.componentDidMount = this.componentDidMount.bind(this);
+    this.updateRating1 = this.updateRating1.bind(this);
+    // this.updateRating2 = this.updateRating2.bind(this);
+    // this.updateRating3 = this.updateRating3.bind(this);
+    // this.updateRating4 = this.updateRating4.bind(this);
     this.saveReview = this.saveReview.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  saveReview() {
-
+  updateRating1(rate) {
+    // this.setState({
+    //   rating1: value
+    // });
+    alert(rate);
   }
 
-  // componentDidMount() {
-  //   //ideally, setState of the location
-  // }
+  saveReview(e, {value}) {
+    console.log("saving review");
+  }
+
+  componentDidMount() {
+    //ideally, setState of the location
+  }
 
   render() {
     return (
       <div>
         <TopBar/>
         <h1>Reviewing [Location]</h1>
+
         <div className="ratings">
-        <div className="middle aligned grid">
-          <div className="ui items">
-
-            <div className="ui grid">
-              <div className="eight wide column">
-                <div className="ui items">
-                <div className="ui item">
-                  <div className="middle aligned content">
-                    <div className="header">
-                      Rating 1
-                    </div>
-                    <Rating
-                      className="ui star"
-                      defaultRating={3}
-                      maxRating={5}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-              <div className="eight wide column">
-                <div className="ui items">
-                  <div className="ui item">
-                    <div className="middle aligned content">
-                      <div className="header">
-                        Rating 2
-                      </div>
-                      <Rating
-                        className="ui star"
-                        defaultRating={3}
-                        maxRating={5}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-
-            <div className="ui grid">
-              <div className="eight wide column">
-                <div className="ui items">
-                  <div className="ui item">
-                    <div className="middle aligned content">
-                      <div className="header">
-                        Rating 3:
-                      </div>
-                      <Rating
-                        className="ui star"
-                        defaultRating={3}
-                        maxRating={5}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="eight wide column">
-                <div className="ui items">
-                  <div className="ui item">
-                    <div className="middle aligned content">
-                      <div className="header">
-                        Rating 4:
-                      </div>
-                      <Rating
-                        className="ui star"
-                        defaultRating={3}
-                        maxRating={5}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <Rating
+            fractions={2}
+            onChange={(rate) => this.updateRating1(rate)}
+          />
+          <div className="ui form">
+            <div className="field">
+              <label>Enter your review below:</label>
+              <textarea rows="5">
+              </textarea>
             </div>
           </div>
         </div>
-
-        <div className="ui form">
-          <div className="field">
-            <label>Enter your review below:</label>
-            <textarea rows="5">
-            </textarea>
-          </div>
-        </div>
-      </div>
         <Button
           className="blue"
-          onSubmit={this.saveReview}
-        >Submit</Button>
+          onClick={this.saveReview}
+        >
+          Submit</Button>
 
       </div>
     )
