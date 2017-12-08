@@ -9,10 +9,7 @@ import {
   Form,
   Checkbox,
   Menu,
-  Icon,
-  Sidebar,
-  Segment,
-  Header
+  Icon
  }
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
