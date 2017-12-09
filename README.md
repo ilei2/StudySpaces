@@ -5,6 +5,9 @@ Best places to study on UIUC campus
 ###Completed
 - Profile Structure: Jasmine
 
+###In Progress
+- Gallery Structure: Jasmine
+
 # 12/6
 ### Completed
 - Login User auth: Alicia
