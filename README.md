@@ -1,6 +1,10 @@
 # StudySpace
 Best places to study on UIUC campus
 
+# 12/8
+###Completed
+- Profile Structure: Jasmine
+
 # 12/6
 ### Completed
 - Login User auth: Alicia
@@ -12,7 +16,7 @@ Best places to study on UIUC campus
 ### Completed
 - Home, Review structure: Ivy
 - Login, Signup, Location structure: Kirsten
-- Nav Bar structure: Ivy 
+- Nav Bar structure: Ivy
 
 ### To do
 - API functionality: Michelle
@@ -36,4 +40,3 @@ Best places to study on UIUC campus
 ### Overall Structure / Layout of the Website
 - Workflow, Storyboard
 - responsible: Kirsten, Jasmine
-
