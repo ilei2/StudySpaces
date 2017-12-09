@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import {
   Rating,
   Form,
+  TextArea,
   Button
 } from 'semantic-ui-react';
-//import Rating from 'react-rating';
 
 import styles from './Review.scss';
 import TopBar from '../TopBar/TopBar.jsx';
-
-// var Rating = require('react-rating');
 
 class Review extends Component {
   constructor(props){
@@ -19,12 +17,12 @@ class Review extends Component {
 
     this.state = {
       email: "",
+      location: "",
       rating1: 0,
       rating2: 0,
       rating3: 0,
       rating4: 0,
       text: "",
-      location: ""
     }
     this.handleRating1 = this.handleRating1.bind(this);
     this.handleRating2 = this.handleRating2.bind(this);
@@ -59,11 +57,10 @@ class Review extends Component {
     });
   }
 
-  handleFormChange(e, {review}) {
+  handleFormChange(e) {
     this.setState({
-      text: review
+      text: e.target.value
     });
-    console.log("handleChange");
   }
 
   submitReview(e, {value}) {
@@ -75,7 +72,7 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    //ideally, setState of the location
+    //ideally, setState of the email and location
   }
 
   render() {
@@ -167,23 +164,21 @@ class Review extends Component {
             </div>
           </div>
 
-          <Form>
-            <label>Enter your review below</label>
-            <Form.Input
-              placeholder="i.e. This place is great because..."
-              onChange={this.handleFormChange}
-            />
-          </Form>
-
-          <div className="ui form">
-            <div className="field"
-              >
-              <label>Enter your review below:</label>
-              <textarea rows="5">
-              </textarea>
-            </div>
+          <div className="text-form">
+            <Form>
+              <label>Enter your review below (500 char limit)</label>
+              <TextArea
+                placeholder="This place is good/bad because..."
+                rows={5}
+                onChange={this.handleFormChange}
+                maxLength={500}
+              />
+            </Form>
           </div>
+
         </div>
+
+
           <Button
             className="blue"
             onClick={this.submitReview}
