@@ -7,9 +7,12 @@ import {
   TextArea,
   Button
 } from 'semantic-ui-react';
+//import Rating from 'react-rating';
 
 import styles from './Review.scss';
 import TopBar from '../TopBar/TopBar.jsx';
+
+// var Rating = require('react-rating');
 
 class Review extends Component {
   constructor(props){
@@ -17,12 +20,19 @@ class Review extends Component {
 
     this.state = {
       email: "",
+<<<<<<< HEAD
       location: "",
+=======
+>>>>>>> 8ec2e6cc5c334641bbdbe109949d43f6dab4c104
       rating1: 0,
       rating2: 0,
       rating3: 0,
       rating4: 0,
       text: "",
+<<<<<<< HEAD
+=======
+      location: ""
+>>>>>>> 8ec2e6cc5c334641bbdbe109949d43f6dab4c104
     }
     this.handleRating1 = this.handleRating1.bind(this);
     this.handleRating2 = this.handleRating2.bind(this);
@@ -57,10 +67,18 @@ class Review extends Component {
     });
   }
 
+<<<<<<< HEAD
   handleFormChange(e) {
     this.setState({
       text: e.target.value
     });
+=======
+  handleFormChange(e, {review}) {
+    this.setState({
+      text: review
+    });
+    console.log("handleChange");
+>>>>>>> 8ec2e6cc5c334641bbdbe109949d43f6dab4c104
   }
 
   submitReview(e, {value}) {
@@ -72,7 +90,11 @@ class Review extends Component {
   }
 
   componentDidMount() {
+<<<<<<< HEAD
     //ideally, setState of the email and location
+=======
+    //ideally, setState of the location
+>>>>>>> 8ec2e6cc5c334641bbdbe109949d43f6dab4c104
   }
 
   render() {
@@ -164,6 +186,7 @@ class Review extends Component {
             </div>
           </div>
 
+<<<<<<< HEAD
           <div className="text-form">
             <Form>
               <label>Enter your review below (500 char limit)</label>
@@ -174,9 +197,27 @@ class Review extends Component {
                 maxLength={500}
               />
             </Form>
+=======
+          <Form>
+            <label>Enter your review below</label>
+            <Form.Input
+              placeholder="i.e. This place is great because..."
+              onChange={this.handleFormChange}
+            />
+          </Form>
+
+          <div className="ui form">
+            <div className="field"
+              >
+              <label>Enter your review below:</label>
+              <textarea rows="5">
+              </textarea>
+            </div>
+>>>>>>> 8ec2e6cc5c334641bbdbe109949d43f6dab4c104
           </div>
 
         </div>
+<<<<<<< HEAD
 
 
           <Button
@@ -184,6 +225,13 @@ class Review extends Component {
             onClick={this.submitReview}
           >Submit</Button>
 
+=======
+          <Button
+            className="blue"
+            onClick={this.submitReview}
+          >Submit</Button>
+
+>>>>>>> 8ec2e6cc5c334641bbdbe109949d43f6dab4c104
         </div>
     )
   }
