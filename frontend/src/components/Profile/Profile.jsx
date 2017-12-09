@@ -31,12 +31,6 @@ class Profile extends Component {
                  Ivy is a software engineer living in Naperville.
                </Card.Description>
              </Card.Content>
-             <Card.Content extra>
-               <a>
-                 <Icon name='user' />
-                 5 Friends
-               </a>
-             </Card.Content>
            </Card>
            <br/>
              <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
