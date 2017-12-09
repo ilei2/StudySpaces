@@ -21,9 +21,13 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      value: ""
+      value: "",
+      search: ""
     };
+
     this.handleChange = this.handleChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.submitSearch = this.submitSearch.bind(this);
   }
 
   handleChange(e, {value}) {
@@ -31,6 +35,20 @@ class Home extends Component {
       value
     });
   }
+
+  handleSearch(e, {value}) {
+    this.setState({
+      search: value
+    })
+  }
+
+  submitSearch() {
+    console.log("radio selection:");
+    console.log(this.state.value);
+    console.log("Search text:");
+    console.log(this.state.search);
+  }
+
   render() {
     return (
       <div>
@@ -39,6 +57,7 @@ class Home extends Component {
         <Search
           placeholder='i.e. Cafes near me'
           open={false}
+          onSearchChange={this.handleSearch}
         />
           <Form className="ui home-form">
             <Form.Field>
@@ -85,6 +104,7 @@ class Home extends Component {
           <Button
             color="grey"
             className="ui home-submit-btn"
+            onClick={this.submitSearch}
           >
               Submit
           </Button>
