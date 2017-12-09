@@ -5,6 +5,7 @@ import {
   Search,
   List,
   Image,
+  Input,
   Dropdown,
   Form,
   Checkbox,
@@ -54,10 +55,10 @@ class Home extends Component {
       <div>
         <TopBar/>
         <h1>Home Component</h1>
-        <Search
+        <Input
           placeholder='i.e. Cafes near me'
-          open={false}
-          onSearchChange={this.handleSearch}
+          size='massive'
+          onChange={this.handleSearch}
         />
           <Form className="ui home-form">
             <Form.Field>
