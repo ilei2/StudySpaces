@@ -28,6 +28,15 @@ app.route('/login').get(function(req, res) {
 app.route('/signup').get(function(req, res) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
+app.route('/profile').get(function(req, res) {
+  return res.sendFile(path.join(__dirname, './backend/static/index.html'));
+});
+app.route('/review').get(function(req, res) {
+  return res.sendFile(path.join(__dirname, './backend/static/index.html'));
+});
+app.route('/location').get(function(req, res) {
+  return res.sendFile(path.join(__dirname, './backend/static/index.html'));
+});
 
 /* New things ================================================================ */
 
