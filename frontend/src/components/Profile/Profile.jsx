@@ -1,6 +1,6 @@
 'use strict'
 import React, { Component } from 'react';
-import { Header, Image, Card, Icon, Table, Rating, Dropdown } from 'semantic-ui-react'
+import { Header, Image, Card, Icon, Table, Rating, Dropdown, List } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 import styles from './Profile.scss';
@@ -12,8 +12,8 @@ class Profile extends Component {
       <div className="ui container center aligned">
         <TopBar/>
         <h1>Profile Component</h1>
-          <Header as='h2'>
-            <Image circular src='.../../assets/avatar1.png' />
+          <Header as='h2' color="purple" size="huge" textAlign="center">
+            <Image circular bordered centered="True" src='.../../assets/avatar1.png' />
             {' '}yvilei
           </Header>
            <br/>
@@ -23,13 +23,12 @@ class Profile extends Component {
                  <Dropdown.Item>Date Updated</Dropdown.Item>
                </Dropdown.Menu>
              </Dropdown>
-           <Table celled padded>
+           <Table celled padded color="teal" striped>
              <Table.Header>
                <Table.Row>
                  <Table.HeaderCell singleLine>Date</Table.HeaderCell>
                  <Table.HeaderCell>Location</Table.HeaderCell>
-                 <Table.HeaderCell>Rating</Table.HeaderCell>
-                 <Table.HeaderCell>Characteristics</Table.HeaderCell>
+                 <Table.HeaderCell>Characteristics with Ratings</Table.HeaderCell>
                  <Table.HeaderCell>Reviews</Table.HeaderCell>
                </Table.Row>
              </Table.Header>
@@ -40,11 +39,15 @@ class Profile extends Component {
                    <Header as='h2' textAlign='center'>12/04/17</Header>
                  </Table.Cell>
                  <Table.Cell singleLine>Cafe</Table.Cell>
-                 <Table.Cell>
-                   <Rating icon='star' defaultRating={3} maxRating={5} />
-                 </Table.Cell>
-                 <Table.Cell textAlign='right'>
-                     Quiet, Wifi, Coffee, Study <br />
+                 <Table.Cell textAlign='center'>
+                   <List verticalAlign='middle'>
+                     <List.Item>Quiet</List.Item>
+                     <Rating icon='star' defaultRating={3} maxRating={5} /> <br/>
+                     <List.Item>Wifi</List.Item>
+                     <Rating icon='star' defaultRating={4} maxRating={5} /> <br/>
+                     <List.Item>Group</List.Item>
+                     <Rating icon='star' defaultRating={2} maxRating={5} /> <br/>
+                   </List>
                  </Table.Cell>
                  <Table.Cell>
                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -58,12 +61,16 @@ class Profile extends Component {
                    <Header as='h2' textAlign='center'>12/04/17</Header>
                  </Table.Cell>
                  <Table.Cell singleLine>Library</Table.Cell>
-                 <Table.Cell>
-                   <Rating icon='star' defaultRating={4} maxRating={5} />
-                 </Table.Cell>
-                 <Table.Cell textAlign='right'>
-                     Quiet, Wifi, Coffee, Study, Group <br />
-                 </Table.Cell>
+                   <Table.Cell textAlign='center'>
+                     <List verticalAlign='middle'>
+                       <List.Item>Quiet</List.Item>
+                       <Rating icon='star' defaultRating={3} maxRating={5} /> <br/>
+                       <List.Item>Wifi</List.Item>
+                       <Rating icon='star' defaultRating={4} maxRating={5} /> <br/>
+                       <List.Item>Group</List.Item>
+                       <Rating icon='star' defaultRating={2} maxRating={5} /> <br/>
+                     </List>
+                   </Table.Cell>
                  <Table.Cell>
                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -76,12 +83,16 @@ class Profile extends Component {
                    <Header as='h2' textAlign='center'>12/07/17</Header>
                  </Table.Cell>
                  <Table.Cell singleLine>Cafe</Table.Cell>
-                 <Table.Cell>
-                   <Rating icon='star' defaultRating={2} maxRating={5} />
-                 </Table.Cell>
-                 <Table.Cell textAlign='right'>
-                     Quiet, Wifi, Coffee, Study <br />
-                 </Table.Cell>
+                   <Table.Cell textAlign='center'>
+                     <List verticalAlign='middle'>
+                       <List.Item>Quiet</List.Item>
+                       <Rating icon='star' defaultRating={3} maxRating={5} /> <br/>
+                       <List.Item>Wifi</List.Item>
+                       <Rating icon='star' defaultRating={4} maxRating={5} /> <br/>
+                       <List.Item>Group</List.Item>
+                       <Rating icon='star' defaultRating={2} maxRating={5} /> <br/>
+                     </List>
+                   </Table.Cell>
                  <Table.Cell>
                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
