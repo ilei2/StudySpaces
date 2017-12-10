@@ -2,12 +2,12 @@
   "name": "Study_Spaces",
   "version": "1.0.0",
   "description": "",
-  "main": "index.jsx",
+  "main": "bundle.js",
   "scripts": {
     "watch": "webpack -d --watch",
     "build": "webpack",
     "start": "nodemon --use_strict index.js",
-    "dev": "webpack-dev-server --content-base public/ --history-api-fallback"
+    "dev": "webpack-dev-server --content-base frontend/dist/ --history-api-fallback"
   },
   "author": "To Be Added Later",
   "devDependencies": {

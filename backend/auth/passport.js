@@ -42,10 +42,11 @@ module.exports = function(passport) {
 
     // Login Strategy
     passport.use('local-login', new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
+      usernameField: 'email',
+      passwordField: 'password',
+			passReqToCallback: true
     },
-    function(email, password, done) {
+    function(req, email, password, done) {
         console.log("In use");
         User.findOne({'email': email}, function(err, user) {
             if ( err ) {
@@ -54,7 +55,7 @@ module.exports = function(passport) {
                 return done(null, false, {message: 'Email does not exist'});
             } else if (!user.validPassword(password) ) {
                 console.log("in local-login login failed");
-                return done(null, false, {message: 'Email and password does not match'});
+                return done(null, false, {message: 'Email and password do not match'});
             }
 
             console.log('verify is done');

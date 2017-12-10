@@ -36,7 +36,6 @@ class Signup extends Component {
       "email": this.state.user.email,
       "password": this.state.user.password
     }
-
     axios.post('/signup', payload).then(function (response) {
       console.log(response);
       if (response.data.code == 200) {
