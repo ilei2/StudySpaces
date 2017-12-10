@@ -6,8 +6,13 @@ Best places to study on UIUC campus
 - Saving states in Home and Review Components: Ivy
 - Profile Structure: Jasmine
 
+<<<<<<< HEAD
 ### To do
 - Implement API: Michelle
+=======
+###In Progress
+- Gallery Structure: Jasmine
+>>>>>>> profileUpdates
 
 # 12/6
 ### Completed

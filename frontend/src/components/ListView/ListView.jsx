@@ -6,18 +6,12 @@ import { Link } from 'react-router-dom';
 import styles from './ListView.scss';
 import TopBar from '../TopBar/TopBar.jsx';
 
+const numbers = [1, 2, 3, 4];
+
 class ListView extends Component {
   render() {
-    return (
-      <div>
-        <TopBar/>
-        <h1>ListView Component</h1>
-          <Search
-            placeholder='i.e. Cafes near me'
-            open={false}
-          />
-        <Header size='medium' color='teal' >Results</Header>
-        <Grid>
+    var list = numbers.map((number) => {
+        return (
           <Grid.Row container columns={4}>
             <Grid.Column>
               <Image src='.../../assets/knifefork.png' />
@@ -32,37 +26,19 @@ class ListView extends Component {
               <Image src='.../../assets/knifefork.png' />
             </Grid.Column>
           </Grid.Row>
-          <br/>
-            <Grid.Row container columns={4}>
-              <Grid.Column>
-                <Image src='.../../assets/knifefork.png' />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src='.../../assets/knifefork.png' />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src='.../../assets/knifefork.png' />
-              </Grid.Column>
-              <Grid.Column>
-                <Image src='.../../assets/knifefork.png' />
-              </Grid.Column>
-            </Grid.Row>
-            <br/>
-              <Grid.Row container columns={4}>
-                <Grid.Column>
-                  <Image src='.../../assets/knifefork.png' />
-                </Grid.Column>
-                <Grid.Column>
-                  <Image src='.../../assets/knifefork.png' />
-                </Grid.Column>
-                <Grid.Column>
-                  <Image src='.../../assets/knifefork.png' />
-                </Grid.Column>
-                <Grid.Column>
-                  <Image src='.../../assets/knifefork.png' />
-                </Grid.Column>
-              </Grid.Row>
-              <br/>
+        )
+      });
+    return (
+      <div>
+        <TopBar/>
+        <h1>ListView Component</h1>
+          <Search
+            placeholder='i.e. Cafes near me'
+            open={false}
+          />
+        <Header size='medium' color='teal' >Results</Header>
+        <Grid>
+          {list}
         </Grid>
       </div>
     )
