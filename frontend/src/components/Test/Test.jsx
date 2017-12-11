@@ -56,9 +56,10 @@ class Test extends Component {
     console.log("Search text:");
     console.log(this.state.search);
 
-<<<<<<< HEAD
+    var testUrl = 'http://localhost:8081/';
     var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=study+places+in+champaign&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
-    axios.get(url).then((response) => {
+    var both = testUrl + url;
+    axios.get(both).then((response) => {
       console.log(response.data)
       console.log(response.data.results)
       console.log(response.data.results[0].name)
@@ -70,27 +71,7 @@ class Test extends Component {
     .catch(error => {
       console.log('Error fetching and parsing data', error);
     })
-
-    /*
-    var user = gapi.auth2.getAuthInstance().currentUser.get();
-    var oauthToken = user.getAuthResponse().access_token;
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET',
-      'https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0');
-    xhr.setRequestHeader('Authorization',
-      'Bearer ' + oauthToken);
-    xhr.send(); */
-=======
-    //var testUrl = 'https://cors-anywhere.herokuapp.com/';
-    var testUrl = 'http://localhost:8081/';
-    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
-    var both = testUrl + url;
-    axios.get(both).then((response) => {
-      console.log(response);
-    });
->>>>>>> 542544d01945867a277d397b83e4b854e5e8ad22
-  }
-
+}
   render() {
     var results = _.map(this.state.places, (place) => {
         return (
