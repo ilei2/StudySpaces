@@ -15,7 +15,7 @@ import {
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styles from './Test.scss';
-import TopBar from '../TopBar/TopBar.jsx';
+import NavBar from '../NavBar/NavBar.jsx';
 import PropTypes from 'prop-types';
 import axios from 'axios'
 
@@ -51,18 +51,18 @@ class Test extends Component {
     console.log(this.state.value);
     console.log("Search text:");
     console.log(this.state.search);
-  /*  var url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0";
+    var url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0";
     axios.get(url).then((response) => {
-      console.log(response.data)
+      console.log(response);
     });
 
-*/
+
   }
 
   render() {
     return (
       <div>
-        <TopBar/>
+        <NavBar/>
         <h1>Test Component</h1>
         <Input
           placeholder='i.e. Cafes near me'

@@ -6,6 +6,12 @@ import { Rating, Button } from 'semantic-ui-react';
 import styles from './Location.scss';
 
 class Location extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: "testLocation"
+    }
+  }
 
   render() {
     return (
@@ -14,7 +20,8 @@ class Location extends Component {
         <h4>Address</h4>
         <h3>Type of Place</h3>
 
-          <div className="middle aligned grid ratings">
+        <div className="location-rating">
+          <div className="middle aligned grid">
             <div className="ui items">
 
               <div className="ui grid">
@@ -53,35 +60,33 @@ class Location extends Component {
                     </div>
                   </div>
                 </div>
-
               </div>
-
 
               <div className="ui grid">
                 <div className="eight wide column">
                   <div className="ui items">
-                    <div className="ui item">
-                      <div className="middle aligned content">
-                        <div className="header">
-                          Rating 3:
-                        </div>
-                        <Rating
-                          className="ui star"
-                          defaultRating={3}
-                          maxRating={5}
-                          disabled
-                        />
+                  <div className="ui item">
+                    <div className="middle aligned content">
+                      <div className="header">
+                        Rating 3
                       </div>
+                      <Rating
+                        className="ui star"
+                        defaultRating={3}
+                        maxRating={5}
+                        disabled
+                      />
                     </div>
                   </div>
                 </div>
+              </div>
 
                 <div className="eight wide column">
                   <div className="ui items">
                     <div className="ui item">
                       <div className="middle aligned content">
                         <div className="header">
-                          Rating 4:
+                          Rating 4
                         </div>
                         <Rating
                           className="ui star"
@@ -94,10 +99,22 @@ class Location extends Component {
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
-        <Link to={"/review"}>
-          <Button>
+        </div>
+
+        <Link
+          to={{
+            pathname: "/review",
+            state: {
+              location: this.state.location
+            }
+          }}
+        >
+          <Button
+            className=" ui blue"
+            >
             Submit a review for this location!
           </Button>
         </Link>
