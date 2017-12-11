@@ -67,6 +67,20 @@ class NavBar extends Component {
 		}
 	}
 
+	// displays the search bar in the top bar on every page but the home page ('/')
+	displaySearchInput() {
+		let path = window.location.pathname;
+		if (path != '/' && path != '/login' && path != '/signup') {
+			return (
+				<div className="item">
+					<div className="ui icon input">
+						<input type="text" placeholder="Search..."/>
+					</div>
+				</div>
+			);
+		}
+	}
+
   render() {
     return (
       <div className="top-bar">
@@ -77,11 +91,7 @@ class NavBar extends Component {
             </div>
           </Link>
           <div className="right menu">
-            <div className="item">
-              <div className="ui icon input">
-                <input type="text" placeholder="Search..." open={false} />
-              </div>
-            </div>
+						{this.displaySearchInput()}
             {this.displayLinks()}
           </div>
         </div>
