@@ -44,11 +44,14 @@ module.exports = function(passport) {
     passport.use('local-login', new LocalStrategy({
       usernameField: 'email',
       passwordField: 'password',
-			passReqToCallback: true
+			// passReqToCallback: true
     },
-    function(req, email, password, done) {
+    function( email, password, done) {
         console.log("In use");
+				// console.log(req);
+
         User.findOne({'email': email}, function(err, user) {
+					console.log(user);
             if ( err ) {
                 return done(err);
             } else if ( !user) {

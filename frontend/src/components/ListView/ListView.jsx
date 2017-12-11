@@ -4,7 +4,6 @@ import { Header, Search, Grid, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 import styles from './ListView.scss';
-import NavBar from '../NavBar/NavBar.jsx';
 
 const numbers = [1, 2, 3, 4];
 
@@ -30,7 +29,6 @@ class ListView extends Component {
       });
     return (
       <div>
-        <NavBar/>
         <h1>ListView Component</h1>
           <Search
             placeholder='i.e. Cafes near me'

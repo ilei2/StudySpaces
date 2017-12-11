@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from './Signup.scss';
-import TopBar from '../TopBar/TopBar.jsx';
 
 class Signup extends Component {
 
@@ -14,37 +13,75 @@ class Signup extends Component {
 
     this.state = {
       user: {
-        password: '',
-        email: ''
+				firstName: '',
+				lastName: '',
+				email: '',
+        password: ''
       },
-
+			password2: '',
       message: ''
     }
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onChangeEmail = this.onChangeEmail.bind(this);
+    // this.onChangeFirstName = this.onChangeFirstName.bind(this);
+    // this.onChangeLastName = this.onChangeLastName.bind(this);
+		this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+		this.onChangePassword2 = this.onChangePassword2.bind(this);
   }
 
   onSubmit(e) {
     e.preventDefault();
 
-    /*const email = encodeURIComponent(this.state.user.email);
-    const password = encodeURIComponent(this.state.user.password);
-    const formData = `email=${email}&password=${password}`;
-    const payload = {
-      "email": this.state.user.email,
-      "password": this.state.user.password
-    }
-    axios.post('/signup', payload).then(function (response) {
-      console.log(response);
-      if (response.data.code == 200) {
-        console.log("registration successful");
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });*/
+		if (this.state.password2 != this.state.user.password) {
+			this.setState({message: 'Passwords don\'t match'});
+		} else {
+			const email = encodeURIComponent(this.state.user.email);
+	    const password = encodeURIComponent(this.state.user.password);
+	    const formData = `email=${email}&password=${password}`;
+
+	    let self = this;
+	    let payload = {
+	      "email": this.state.username,
+	      "password": this.state.password
+	    }
+
+	    axios.post('api/signup?'+formData)
+	      .then(function (response) {
+	        console.log(response);
+	        if (response.status == 200) {
+						axios.post('api/login?'+formData)
+				      .then(function (response) {
+								// if signup worked correctly, user should be able to login with no problem
+				        if (response.status == 200) {
+									window.location = response.data.redirectURL;
+				        }
+				      })
+				      .catch(function (error) {
+								console.log(error);
+							})
+	        } else {
+						// nothing should reach this, hopefully
+	        }
+	      })
+	      .catch(function (error) {
+					if (error.response.status == 401) {
+						self.setState({message: error.response.data.message});
+					} else {
+						console.log(error);
+					}
+	      })
+		}
+	}
+
+	onChangeFirstName(e) {
+    // this.setState({user.firstName: e.target.value});
+  }
+
+  onChangeLastName(e) {
+    // const user = this.state.user;
+    // user.lastName = e.target.value;
+    // this.setState({user.lastName: e.target.value});
   }
 
   onChangeEmail(e) {
@@ -59,22 +96,28 @@ class Signup extends Component {
     this.setState({user})
   }
 
+	onChangePassword2(e) {
+    this.setState({password2: e.target.value});
+  }
 
   render() {
     return (
       <div>
-        <TopBar/>
-        <form className="Register test" action="/" onSubmit={this.onSubmit}>
-          <Card className="Register__content">
+        <form className="Signup test" action="/" onSubmit={this.onSubmit}>
+          <Card className="Signup_content">
             <div>
-              <h1>Register</h1>
-              <Input label="Email" onChange={this.onChangeEmail} />
+              <h1>Sign Up</h1>
+							<p>{this.state.message}</p>
+
+							<Input placeholder="First Name" type="text" onChange={this.onChangeFirstName} />
+							<Input placeholder="Last Name" type="text" onChange={this.onChangeLastName} />
+              <Input placeholder="Email" type="email" onChange={this.onChangeEmail} />
               <br/><br/>
-              <Input label="Password" onChange={this.onChangePassword} />
+              <Input placeholder="Password" type="password" onChange={this.onChangePassword} />
+							<Input placeholder="Verify Password" type="password" onChange={this.onChangePassword2} />
               <br/><br/>
-              <p>{this.state.message}</p>
               <Input type="submit" />
-              <h4>Already registered? Click <Link to="/login">here</Link> to Log-in!</h4>
+              <h4>Already registered? Click <Link to="/login">here</Link> to Log In!</h4>
             </div>
           </Card>
         </form>

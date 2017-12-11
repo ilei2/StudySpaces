@@ -11,7 +11,7 @@ import Location from './components/Location/Location.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import ListView from './components/ListView/ListView.jsx';
 import Review from './components/Review/Review.jsx';
-import TopBar from './components/TopBar/TopBar.jsx';
+import NavBar from './components/NavBar/NavBar.jsx';
 import Test from './components/Test/Test.jsx';
 
 require('./main.scss');
@@ -19,7 +19,7 @@ require('./main.scss');
 ReactDom.render(
 	<Router>
 		<div>
-			<TopBar/>
+			<NavBar/>
 			<div className="main">
 				<Route exact path="/" component={Home}/>
 				<Route exact path="/login" component={Login}/>

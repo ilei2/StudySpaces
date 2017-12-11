@@ -4,14 +4,12 @@ import { Link } from 'react-router-dom';
 import { Rating, Button } from 'semantic-ui-react';
 
 import styles from './Location.scss';
-import TopBar from '../TopBar/TopBar.jsx';
 
 class Location extends Component {
 
   render() {
     return (
       <div>
-        <TopBar/>
         <h1>Location Name</h1>
         <h4>Address</h4>
         <h3>Type of Place</h3>
