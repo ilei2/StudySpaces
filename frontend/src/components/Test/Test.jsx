@@ -1,5 +1,6 @@
 'use strict'
 import React, { Component } from 'react';
+import _ from 'lodash'
 import {
   Button,
   Search,
@@ -10,7 +11,8 @@ import {
   Form,
   Checkbox,
   Menu,
-  Icon
+  Icon,
+  Grid
  }
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -26,7 +28,9 @@ class Test extends Component {
 
     this.state = {
       value: "",
-      search: ""
+      search: "",
+      places: [],
+      newPlaces: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,10 +56,20 @@ class Test extends Component {
     console.log("Search text:");
     console.log(this.state.search);
 
-    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
+    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=study+places+in+champaign&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
     axios.get(url).then((response) => {
-      console.log(response);
-    });
+      console.log(response.data)
+      console.log(response.data.results)
+      console.log(response.data.results[0].name)
+      console.log(response.data.results[0].formatted_address)
+      this.setState({
+        places: response.data.results
+      });
+    })
+    .catch(error => {
+      console.log('Error fetching and parsing data', error);
+    })
+
     /*
     var user = gapi.auth2.getAuthInstance().currentUser.get();
     var oauthToken = user.getAuthResponse().access_token;
@@ -68,8 +82,22 @@ class Test extends Component {
   }
 
   render() {
+    var results = _.map(this.state.places, (place) => {
+        return (
+         <Grid.Column key={place.id}>
+           <img value={place.id} key={place.id} src='.../../assets/knifefork.png' />
+           <br/>
+           {place.name}
+           <br/>
+           {place.formatted_address}
+           <br/>
+           <br/>
+       </Grid.Column>
+
+        )
+      });
     return (
-      <div>
+      <div className="Test">
         <NavBar/>
         <h1>Test Component</h1>
         <Input
@@ -126,6 +154,13 @@ class Test extends Component {
           >
               Submit
           </Button>
+          <br/>
+          <span>whitespace</span>
+          <Grid className="placeList" relaxed columns={5}>
+            <Grid.Row>
+                {results}
+          </Grid.Row>
+        </Grid>
       </div>
     )
   }
