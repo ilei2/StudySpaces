@@ -15,7 +15,7 @@ import {
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styles from './Test.scss';
-import TopBar from '../TopBar/TopBar.jsx';
+import NavBar from '../NavBar/NavBar.jsx';
 import PropTypes from 'prop-types';
 import axios from 'axios'
 
@@ -51,18 +51,29 @@ class Test extends Component {
     console.log(this.state.value);
     console.log("Search text:");
     console.log(this.state.search);
-  /*  var url = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0";
+
+    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
     axios.get(url).then((response) => {
       console.log(response.data)
     });
+    /*
+    var user = gapi.auth2.getAuthInstance().currentUser.get();
+    var oauthToken = user.getAuthResponse().access_token;
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET',
+      'https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0');
+    xhr.setRequestHeader('Authorization',
+      'Bearer ' + oauthToken);
+    xhr.send(); */
 
-*/
+
+
   }
 
   render() {
     return (
       <div>
-        <TopBar/>
+        <NavBar/>
         <h1>Test Component</h1>
         <Input
           placeholder='i.e. Cafes near me'
