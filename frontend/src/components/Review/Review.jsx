@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react';
 
 import styles from './Review.scss';
-import TopBar from '../TopBar/TopBar.jsx';
+import NavBar from '../NavBar/NavBar.jsx';
 
 class Review extends Component {
   constructor(props){
@@ -79,7 +79,7 @@ class Review extends Component {
   render() {
     return (
       <div>
-        <TopBar/>
+        <NavBar/>
         <h1>Reviewing [Location]</h1>
         <div className="ratings">
         <div className="middle aligned grid">

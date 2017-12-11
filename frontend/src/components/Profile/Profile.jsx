@@ -4,13 +4,13 @@ import { Header, Image, Card, Icon, Table, Rating, Dropdown, List } from 'semant
 import { Link } from 'react-router-dom';
 
 import styles from './Profile.scss';
-import TopBar from '../TopBar/TopBar.jsx';
+import NavBar from '../NavBar/NavBar.jsx';
 
 class Profile extends Component {
   render() {
     return (
       <div className="ui container center aligned">
-        <TopBar/>
+        <NavBar/>
         <h1>Profile Component</h1>
           <Header as='h2' color="purple" size="huge" textAlign="center">
             <Image circular bordered centered="True" src='.../../assets/avatar1.png' />

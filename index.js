@@ -40,6 +40,10 @@ app.route('/location').get(function(req, res) {
 app.route('/listview').get(function(req, res) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
+app.route('/test').get(function(req, res) {
+  return res.sendFile(path.join(__dirname, './backend/static/index.html'));
+});
+
 
 /* New things ================================================================ */
 
