@@ -10,8 +10,8 @@ import TopBar from '../TopBar/TopBar.jsx';
 
 class Login extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       user: {
@@ -28,6 +28,7 @@ class Login extends Component {
   }
 
   onSubmit(e) {
+		console.log("click!");
 
     e.preventDefault();
 
@@ -35,31 +36,30 @@ class Login extends Component {
     const password = encodeURIComponent(this.state.user.password);
     const formData = `email=${email}&password=${password}`;
 
-    let apiBaseUrl = 'http://localhost:3000/api/';
+    // let apiBaseUrl = 'http://localhost:3000/api/';
     let self = this;
     let payload = {
       "email": this.state.username,
       "password": this.state.password
     }
     console.log("formData="+formData);
-    console.log(apiBaseUrl+'login '+payload);
-    axios.post(apiBaseUrl+'login?'+formData)
+    // console.log(apiBaseUrl+'login '+payload);
+    axios.post('api/login?'+formData)
       .then(function (response) {
         console.log(response);
-        if (response.data.code == 200) {
-          console.log("PASS!");
-        }
-        else if (response.data.code == 204) {
-          console.log("NO MATCH");
-          alert("username password do not match");
-        }
-        else {
-          console.log("NO EXIST");
-          alert("username does not exist");
+        if (response.status == 200) {
+					// self.setState({message: response.data.message});
+					window.location = response.data.redirectURL;
+        } else {
+					// nothing should reach this, hopefully
         }
       })
       .catch(function (error) {
-        console.log(error);
+				if (error.response.status == 401) {
+					self.setState({message: error.response.data.message});
+				} else {
+					console.log(error);
+				}
       })
 
   }
@@ -67,13 +67,13 @@ class Login extends Component {
   onChangeEmail(e) {
     const user = this.state.user;
     user.email = e.target.value;
-    this.setState({user})
+    this.setState({user});
   }
 
   onChangePassword(e) {
     const user = this.state.user;
     user.password = e.target.value;
-    this.setState({user})
+    this.setState({user});
   }
 
 
@@ -81,22 +81,22 @@ class Login extends Component {
     return (
       <div>
         <TopBar/>
-        <form className="Login" action="/" onSubmit={this.onSubmit}>
-          <Card className="Login__content">
-            <div>
-              <h1>Login</h1>
-              <Input label="Email" onChange={this.onChangeEmail} />
-              <br/><br/>
-              <Input label="Password" onChange={this.onChangePassword} />
-              <br/><br/>
+				<form className="Login" action="/" onSubmit={this.onSubmit}>
+					<Card className="Login__content">
+						<div>
+							<h1>Login</h1>
+							<p className="loginMessage">{this.state.message}</p>
 
-              <p>{this.state.message}</p>
-              <Input type="submit" />
+							<Input label="Email" onChange={this.onChangeEmail} />
+							<br/><br/>
+							<Input label="Password" onChange={this.onChangePassword} />
+							<br/><br/>
+							<Input type="submit" />
+							<h4>No account yet? Click <Link to="/register">here</Link> to Register!</h4>
 
-              <h4>No account? Sign up <Link to="/signup">here</Link></h4>
-
-            </div>
-          </Card>
+							<Link to="/dashboard"><p>Go to Dashboard</p></Link>
+						</div>
+					</Card>
         </form>
       </div>
     )
