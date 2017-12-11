@@ -11,15 +11,14 @@ import Location from './components/Location/Location.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import ListView from './components/ListView/ListView.jsx';
 import Review from './components/Review/Review.jsx';
-import TopBar from './components/TopBar/TopBar.jsx';
-import Test from './components/Test/Test.jsx';
+import NavBar from './components/NavBar/NavBar.jsx';
 
 require('./main.scss');
 
 ReactDom.render(
 	<Router>
 		<div>
-			<TopBar/>
+			<NavBar/>
 			<div className="main">
 				<Route exact path="/" component={Home}/>
 				<Route exact path="/login" component={Login}/>
@@ -28,7 +27,6 @@ ReactDom.render(
 				<Route exact path="/profile" component={Profile}/>
 				<Route exact path="/listview" component={ListView}/>
 				<Route exact path="/review" component={Review}/>
-				<Route exact path="/test" component={Test}/>
 			</div>
 		</div>
   </Router>,

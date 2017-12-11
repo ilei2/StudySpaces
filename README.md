@@ -1,18 +1,20 @@
 # StudySpace
 Best places to study on UIUC campus
 
+# 12/10
+### Completed
+- Login/Signup both work w/ the UI: Michelle
+
 # 12/8
 ### Completed
 - Saving states in Home and Review Components: Ivy
 - Profile Structure: Jasmine
 
-<<<<<<< HEAD
 ### To do
 - Implement API: Michelle
-=======
+
 ###In Progress
 - Gallery Structure: Jasmine
->>>>>>> profileUpdates
 
 # 12/6
 ### Completed

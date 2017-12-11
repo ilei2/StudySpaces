@@ -6,7 +6,6 @@ import { withRouter } from 'react-router'
 import axios from 'axios'
 
 import styles from './Login.scss';
-import TopBar from '../TopBar/TopBar.jsx';
 
 class Login extends Component {
 
@@ -61,7 +60,6 @@ class Login extends Component {
 					console.log(error);
 				}
       })
-
   }
 
   onChangeEmail(e) {
@@ -80,19 +78,18 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <TopBar/>
 				<form className="Login" action="/" onSubmit={this.onSubmit}>
 					<Card className="Login__content">
 						<div>
 							<h1>Login</h1>
 							<p className="loginMessage">{this.state.message}</p>
 
-							<Input label="Email" onChange={this.onChangeEmail} />
+							<Input placeholder="Email" type="email" onChange={this.onChangeEmail} />
 							<br/><br/>
-							<Input label="Password" onChange={this.onChangePassword} />
+							<Input placeholder="Password" type="password" onChange={this.onChangePassword} />
 							<br/><br/>
 							<Input type="submit" />
-							<h4>No account yet? Click <Link to="/register">here</Link> to Register!</h4>
+							<h4>No account yet? Click <Link to="/signup">here</Link> to Sign Up!</h4>
 
 							<Link to="/dashboard"><p>Go to Dashboard</p></Link>
 						</div>

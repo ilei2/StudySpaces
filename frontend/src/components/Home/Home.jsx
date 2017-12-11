@@ -15,7 +15,6 @@ import {
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import styles from './Home.scss';
-import TopBar from '../TopBar/TopBar.jsx';
 
 class Home extends Component {
   constructor(props){
@@ -53,7 +52,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <TopBar/>
         <h1>Home Component</h1>
         <Input
           placeholder='i.e. Cafes near me'
