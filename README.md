@@ -1,6 +1,10 @@
 # StudySpace
 Best places to study on UIUC campus
 
+# 12/11
+### Completed
+- added cors-anywhere for Google API: Ivy
+
 # 12/10
 ### Completed
 - Login/Signup both work w/ the UI: Michelle

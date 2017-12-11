@@ -56,6 +56,7 @@ class Test extends Component {
     console.log("Search text:");
     console.log(this.state.search);
 
+<<<<<<< HEAD
     var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=study+places+in+champaign&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
     axios.get(url).then((response) => {
       console.log(response.data)
@@ -79,6 +80,15 @@ class Test extends Component {
     xhr.setRequestHeader('Authorization',
       'Bearer ' + oauthToken);
     xhr.send(); */
+=======
+    //var testUrl = 'https://cors-anywhere.herokuapp.com/';
+    var testUrl = 'http://localhost:8081/';
+    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
+    var both = testUrl + url;
+    axios.get(both).then((response) => {
+      console.log(response);
+    });
+>>>>>>> 542544d01945867a277d397b83e4b854e5e8ad22
   }
 
   render() {
