@@ -8,9 +8,35 @@ const User = require('./')
 const router = express.Router();
 const cookieSession = require('cookie-session');
 const cookieParser = require('cookie-parser');
+var cors_proxy = require('cors-anywhere');
 
 app.use(express.static('./backend/static/'));
 app.use(express.static('./frontend/dist/'));
+
+
+var port = process.env.PORT || 3000;
+var port2 = process.env.PORT || 8081;
+var host = process.env.HOST || '0.0.0.0';
+
+// Allow CORS so that backend and frontend could be put on different servers
+var allowCrossDomain = function (req, res, next) {
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+    next();
+};
+app.use(allowCrossDomain);
+
+
+cors_proxy.createServer({
+  originWhitelist: [],
+  requireHeader: ['origin', 'x-requested-with'],
+  removeHeaders: ['cookie', 'cookie2']
+}).listen(port2, host, function() {
+  console.log('Running CORS anywhere on' + host + ': ' + port);
+})
+
+
+
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -19,28 +45,28 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Static routes
-app.route('/').get(function(req, res) {
+app.route('/').get(function(req, res, next) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
-app.route('/login').get(function(req, res) {
+app.route('/login').get(function(req, res, next) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
-app.route('/signup').get(function(req, res) {
+app.route('/signup').get(function(req, res, next) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
-app.route('/profile').get(function(req, res) {
+app.route('/profile').get(function(req, res, next) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
-app.route('/review').get(function(req, res) {
+app.route('/review').get(function(req, res, next) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
-app.route('/location').get(function(req, res) {
+app.route('/location').get(function(req, res, next) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
-app.route('/listview').get(function(req, res) {
+app.route('/listview').get(function(req, res, next) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
-app.route('/test').get(function(req, res) {
+app.route('/test').get(function(req, res, next) {
   return res.sendFile(path.join(__dirname, './backend/static/index.html'));
 });
 
@@ -66,6 +92,6 @@ app.use('/api', require('./backend/routes/api')(router, passport));
 /* =========================================================================== */
 
 // start the server
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('Server is running on http://localhost:3000 or http://127.0.0.1:3000');
 });

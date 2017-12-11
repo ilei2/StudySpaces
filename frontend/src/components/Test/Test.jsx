@@ -52,19 +52,13 @@ class Test extends Component {
     console.log("Search text:");
     console.log(this.state.search);
 
+    //var testUrl = 'https://cors-anywhere.herokuapp.com/';
+    var testUrl = 'http://localhost:8081/';
     var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
-    axios.get(url).then((response) => {
+    var both = testUrl + url;
+    axios.get(both).then((response) => {
       console.log(response);
     });
-    /*
-    var user = gapi.auth2.getAuthInstance().currentUser.get();
-    var oauthToken = user.getAuthResponse().access_token;
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET',
-      'https://maps.googleapis.com/maps/api/place/textsearch/json?query=uiuc&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0');
-    xhr.setRequestHeader('Authorization',
-      'Bearer ' + oauthToken);
-    xhr.send(); */
   }
 
   render() {
