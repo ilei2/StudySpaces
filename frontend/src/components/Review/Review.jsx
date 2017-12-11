@@ -16,11 +16,11 @@ class Review extends Component {
 
       this.state = {
         email: "",
-        location: "",
-        rating1: 0,
-        rating2: 0,
-        rating3: 0,
-        rating4: 0,
+        location: props.location.state.location,
+        rating1: 3,
+        rating2: 3,
+        rating3: 3,
+        rating4: 3,
         text: ""
       }
 
@@ -64,6 +64,7 @@ class Review extends Component {
   }
 
   submitReview(e, {value}) {
+    console.log(this.state.location);
     console.log(this.state.rating1);
     console.log(this.state.rating2);
     console.log(this.state.rating3);
@@ -78,7 +79,7 @@ class Review extends Component {
   render() {
     return (
       <div>
-        <h1>Reviewing [Location]</h1>
+        <h1>Reviewing {this.state.location}</h1>
         <div className="ratings">
         <div className="middle aligned grid">
           <div className="ui items">
