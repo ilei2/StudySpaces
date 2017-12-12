@@ -5,7 +5,8 @@ import {
   Rating,
   Form,
   TextArea,
-  Button
+  Button,
+  Popup
 } from 'semantic-ui-react';
 import axios from 'axios';
 
@@ -132,7 +133,10 @@ class Review extends Component {
                 <div className="ui item">
                   <div className="middle aligned content">
                     <div className="header">
-                      Rating 1
+                      <Popup
+                        trigger={<Button content='Quietness:' />}
+                        content='1 star: very loud 5 star: very quiet'
+                      />
                     </div>
                     <Rating
                       className="ui star"
@@ -150,7 +154,10 @@ class Review extends Component {
                   <div className="ui item">
                     <div className="middle aligned content">
                       <div className="header">
-                        Rating 2
+                        <Popup
+                          trigger={<Button content='Wi-Fi Strength:' />}
+                          content='1 star: no wi-fi 5 star: great wi-fi'
+                        />
                       </div>
                       <Rating
                         className="ui star"
@@ -172,7 +179,10 @@ class Review extends Component {
                   <div className="ui item">
                     <div className="middle aligned content">
                       <div className="header">
-                        Rating 3:
+                        <Popup
+                          trigger={<Button content='Food Availability:' />}
+                          content='1 star: no nearby food 5 star: food in building'
+                        />
                       </div>
                       <Rating
                         className="ui star"
@@ -190,7 +200,10 @@ class Review extends Component {
                   <div className="ui item">
                     <div className="middle aligned content">
                       <div className="header">
-                        Rating 4:
+                        <Popup
+                          trigger={<Button content='Open Late:' />}
+                          content='1 star: closes 3pm or earlier 5 star: open 12pm or later'
+                        />
                       </div>
                       <Rating
                         className="ui star"
