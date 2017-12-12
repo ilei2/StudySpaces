@@ -9,16 +9,19 @@ class Location extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: "testLocation"
+      location: props.location.state.location,
+      address: props.location.state.address
     }
   }
 
   render() {
+    console.log("LOCATION PAGE: ");
+    console.log(this.props);
     return (
       <div>
-        <h1>Location Name</h1>
-        <h4>Address</h4>
-        <h3>Type of Place</h3>
+        <h1>{this.state.location}</h1>
+        <h4>{this.state.address}</h4>
+        <h3>[Type of Place]</h3>
 
         <div className="location-rating">
           <div className="middle aligned grid">

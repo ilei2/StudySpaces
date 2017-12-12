@@ -55,11 +55,15 @@ class Test extends Component {
     console.log(this.state.value);
     console.log("Search text:");
     console.log(this.state.search);
+    let newSearch = this.state.search.replace(/ /g, '+');
+    console.log(newSearch);
 
-    var testUrl = 'http://localhost:8081/';
-    var url = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=study+places+in+champaign&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
-    var both = testUrl + url;
-    axios.get(both).then((response) => {
+    var corsUrl = 'http://localhost:8081/';
+    let googleapi = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
+    let apikey = '&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
+
+    var newApiCall = corsUrl + googleapi + newSearch + apikey;
+    axios.get(newApiCall).then((response) => {
       console.log(response.data)
       console.log(response.data.results)
       console.log(response.data.results[0].name)
@@ -72,17 +76,45 @@ class Test extends Component {
       console.log('Error fetching and parsing data', error);
     })
 }
+
   render() {
     var results = _.map(this.state.places, (place) => {
+        // console.log(place.name);
+        // console.log(place.photos);
+        // console.log("================================");
+        let photourl = '';
+
+        if (place.photos == undefined) {
+          //console.log(place.name + " is undefined");
+          photourl = '.../../assets/knifefork.png';
+        }
+        else {
+          let googlephoto = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
+          let key = '&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
+          photourl = googlephoto + place.photos[0].photo_reference + key;
+        }
+
+        //'.../../assets/knifefork.png'
         return (
          <Grid.Column key={place.id}>
-           <img value={place.id} key={place.id} src='.../../assets/knifefork.png' />
+           <Image centered size="medium" value={place.id} key={place.id} src={photourl} />
            <br/>
+           <Link
+             to={{
+               pathname: "/location",
+               state: {
+                 location: place.name,
+                 address: place.formatted_address
+               }
+             }}
+           >
            {place.name}
+           </Link>
            <br/>
            {place.formatted_address}
            <br/>
            <br/>
+
        </Grid.Column>
 
         )
@@ -92,7 +124,7 @@ class Test extends Component {
         <NavBar/>
         <h1>Test Component</h1>
         <Input
-          placeholder='i.e. Cafes near me'
+          placeholder='i.e. Cafes in Champaign'
           size='massive'
           onChange={this.handleSearch}
         />
@@ -147,7 +179,7 @@ class Test extends Component {
           </Button>
           <br/>
           <span>whitespace</span>
-          <Grid className="placeList" relaxed columns={5}>
+          <Grid className="placeList" relaxed columns={3}>
             <Grid.Row>
                 {results}
           </Grid.Row>
