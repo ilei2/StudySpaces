@@ -7,6 +7,7 @@ import {
   TextArea,
   Button
 } from 'semantic-ui-react';
+import axios from 'axios';
 
 import styles from './Review.scss';
 
@@ -17,6 +18,7 @@ class Review extends Component {
       this.state = {
         email: "",
         location: props.location.state.location,
+        address: props.location.state.address,
         rating1: 3,
         rating2: 3,
         rating3: 3,
@@ -38,25 +40,21 @@ class Review extends Component {
       rating1: rating
     });
   }
-
   handleRating2(e, {rating}) {
     this.setState({
       rating2: rating
     });
   }
-
   handleRating3(e, {rating}) {
     this.setState({
       rating3: rating
     });
   }
-
   handleRating4(e, {rating}) {
     this.setState({
       rating4: rating
     });
   }
-
   handleFormChange(e) {
     this.setState({
       text: e.target.value
@@ -70,16 +68,60 @@ class Review extends Component {
     console.log(this.state.rating3);
     console.log(this.state.rating4);
     console.log(this.state.text);
+
+    axios.get('/api/review', {
+      params: {
+        email: this.state.email,
+        address: this.state.address
+      }
+    })
+    .then( (res) => {
+      let id = res.data.data[0]._id;
+      console.log(id);
+      axios.put('/api/review/'+id, {
+        email: this.state.email,
+        location: this.state.location,
+        address: this.state.address,
+        rating1: this.state.rating1,
+        rating2: this.state.rating2,
+        rating3: this.state.rating3,
+        rating4: this.state.rating4,
+        text: this.state.text
+      })
+    })
+    .catch ( (err) => {
+      axios.post('/api/review', {
+        email: this.state.email,
+        location: this.state.location,
+        address: this.state.address,
+        rating1: this.state.rating1,
+        rating2: this.state.rating2,
+        rating3: this.state.rating3,
+        rating4: this.state.rating4,
+        text: this.state.text
+      })
+    })
+
   }
 
   componentDidMount() {
-    //ideally, setState of the email and location
+    axios.get('/api/profile')
+			.then( (res) => {
+	      this.setState({
+          email: res.data.user.email
+        });
+				console.log("CAN WRITE REVIEW :D " + res.data.user.email);
+	    })
+			.catch( (err) => {
+				console.log(err);
+	    })
   }
 
   render() {
     return (
       <div>
         <h1>Reviewing {this.state.location}</h1>
+        <h4>{this.state.address}</h4>
         <div className="ratings">
         <div className="middle aligned grid">
           <div className="ui items">

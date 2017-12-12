@@ -12,7 +12,9 @@ import {
   Checkbox,
   Menu,
   Icon,
-  Grid
+  Grid,
+  Card,
+  Header
  }
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -78,12 +80,11 @@ class Test extends Component {
 }
 
   render() {
-    var results = _.map(this.state.places, (place) => {
+    var results = this.state.places.slice(0,20).map((place) => {
         // console.log(place.name);
         // console.log(place.photos);
         // console.log("================================");
-        let photourl = '';
-
+  /*      let photourl = '';
         if (place.photos == undefined) {
           //console.log(place.name + " is undefined");
           photourl = '.../../assets/knifefork.png';
@@ -93,26 +94,31 @@ class Test extends Component {
           let key = '&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
           photourl = googlephoto + place.photos[0].photo_reference + key;
         }
-
-        //'.../../assets/knifefork.png'
+*/
         return (
          <Grid.Column key={place.id}>
-           <Image centered size="medium" value={place.id} key={place.id} src={photourl} />
-           <br/>
-           <Link
-             to={{
-               pathname: "/location",
-               state: {
-                 location: place.name,
-                 address: place.formatted_address,
-                 photo: place.photos
-               }
-             }}
-           >
-           {place.name}
-           </Link>
-           <br/>
-           {place.formatted_address}
+           <Card>
+             <Image centered size="medium" value={place.id} key={place.id} src=".../../assets/knifefork.png" />
+             <Card.Content>
+               <Card.Header>
+                 <Link
+                   to={{
+                     pathname: "/location",
+                     state: {
+                       location: place.name,
+                       address: place.formatted_address,
+                       photo: place.photos
+                     }
+                   }}
+                 >
+                 {place.name}
+                 </Link>
+               </Card.Header>
+               <Card.Description>
+                {place.formatted_address}
+               </Card.Description>
+             </Card.Content>
+           </Card>
            <br/>
            <br/>
 
@@ -129,48 +135,8 @@ class Test extends Component {
           size='massive'
           onChange={this.handleSearch}
         />
-          <Form className="ui home-form">
-            <Form.Field>
-              <Checkbox
-                radio
-                label="quiet"
-                name="first"
-                value='quiet'
-                checked={this.state.value === 'quiet'}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <Checkbox
-                radio
-                label="busy"
-                name="second"
-                value='busy'
-                checked={this.state.value === 'busy'}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <Checkbox
-                radio
-                label="wifi"
-                name="third"
-                value='wifi'
-                checked={this.state.value === 'wifi'}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <Checkbox
-                radio
-                label="group"
-                name="fourth"
-                value='group'
-                checked={this.state.value === 'group'}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-          </Form>
+          <br/>
+          <br/>
           <Button
             color="grey"
             className="ui home-submit-btn"
@@ -179,8 +145,10 @@ class Test extends Component {
               Submit
           </Button>
           <br/>
+          <Header size='medium' color='teal' >Results</Header>
+          <br/>
           <span>whitespace</span>
-          <Grid className="placeList" relaxed columns={3}>
+          <Grid centered className="placeList" relaxed columns={4}>
             <Grid.Row>
                 {results}
           </Grid.Row>

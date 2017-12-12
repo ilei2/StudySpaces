@@ -6,6 +6,7 @@ import {
   Rating,
   Button } from 'semantic-ui-react';
 
+import axios from 'axios';
 import styles from './Location.scss';
 
 class Location extends Component {
@@ -13,32 +14,30 @@ class Location extends Component {
     super(props);
     this.state = {
       location: props.location.state.location,
-      address: props.location.state.address,
-      photo: props.location.state.photo
+      address: props.location.state.address
     }
+
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/api/review')
+			.then( (res) => {
+	      this.setState({
+          email: res.data.user.email
+        });
+				console.log("CAN WRITE REVIEW :D " + res.data.user.email);
+	    })
+			.catch( (err) => {
+				console.log(err);
+	    })
   }
 
   render() {
-    console.log("LOCATION PAGE: ");
-
-    let photourl = '';
-
-    if (this.state.photo == undefined) {
-      //console.log(place.name + " is undefined");
-      photourl = '.../../assets/knifefork.png';
-    }
-    else {
-      let googlephoto = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
-      let key = '&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
-      photourl = googlephoto + this.state.photo[0].photo_reference + key;
-    }
-
-
     return (
       <div>
         <h1>{this.state.location}</h1>
         <h4>{this.state.address}</h4>
-        <Image src={photourl}/>
 
         <div className="location-rating">
           <div className="middle aligned grid">
@@ -124,20 +123,23 @@ class Location extends Component {
           </div>
         </div>
 
-        <Link
-          to={{
-            pathname: "/review",
-            state: {
-              location: this.state.location
-            }
-          }}
-        >
-          <Button
-            className=" ui blue"
-            >
-            Submit a review for this location!
-          </Button>
-        </Link>
+        <div className="location-btn">
+          <Link
+            to={{
+              pathname: "/review",
+              state: {
+                location: this.state.location,
+                address: this.state.address
+              }
+            }}
+          >
+            <Button
+              className="ui blue"
+              >
+              Submit a review for this location!
+            </Button>
+          </Link>
+        </div>
       </div>
     )
   }
