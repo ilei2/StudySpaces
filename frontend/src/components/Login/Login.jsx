@@ -90,8 +90,6 @@ class Login extends Component {
 							<br/><br/>
 							<Input type="submit" />
 							<h4>No account yet? Click <Link to="/signup">here</Link> to Sign Up!</h4>
-
-							<Link to="/dashboard"><p>Go to Dashboard</p></Link>
 						</div>
 					</Card>
         </form>

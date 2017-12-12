@@ -13,8 +13,6 @@ class Signup extends Component {
 
     this.state = {
       user: {
-				firstName: '',
-				lastName: '',
 				email: '',
         password: ''
       },
@@ -23,8 +21,6 @@ class Signup extends Component {
     }
 
     this.onSubmit = this.onSubmit.bind(this);
-    // this.onChangeFirstName = this.onChangeFirstName.bind(this);
-    // this.onChangeLastName = this.onChangeLastName.bind(this);
 		this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
 		this.onChangePassword2 = this.onChangePassword2.bind(this);
@@ -74,16 +70,6 @@ class Signup extends Component {
 		}
 	}
 
-	onChangeFirstName(e) {
-    // this.setState({user.firstName: e.target.value});
-  }
-
-  onChangeLastName(e) {
-    // const user = this.state.user;
-    // user.lastName = e.target.value;
-    // this.setState({user.lastName: e.target.value});
-  }
-
   onChangeEmail(e) {
     const user = this.state.user;
     user.email = e.target.value;
@@ -109,8 +95,6 @@ class Signup extends Component {
               <h1>Sign Up</h1>
 							<p>{this.state.message}</p>
 
-							<Input placeholder="First Name" type="text" onChange={this.onChangeFirstName} />
-							<Input placeholder="Last Name" type="text" onChange={this.onChangeLastName} />
               <Input placeholder="Email" type="email" onChange={this.onChangeEmail} />
               <br/><br/>
               <Input placeholder="Password" type="password" onChange={this.onChangePassword} />
