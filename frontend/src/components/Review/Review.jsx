@@ -18,6 +18,7 @@ class Review extends Component {
 
       this.state = {
         email: "",
+        icon: "",
         location: props.location.state.location,
         address: props.location.state.address,
         rating1: 3,
@@ -70,6 +71,11 @@ class Review extends Component {
     console.log(this.state.rating4);
     console.log(this.state.text);
 
+    let firstChar = this.state.email.charAt(0);
+    let charVal = (firstChar.charCodeAt(0)-96) % 10;
+    let profileIcon = charVal.toString() + ".png";
+    console.log(profileIcon);
+
     axios.get('/api/review', {
       params: {
         email: this.state.email,
@@ -81,6 +87,7 @@ class Review extends Component {
       console.log(id);
       axios.put('/api/review/'+id, {
         email: this.state.email,
+        icon: this.state.icon,
         location: this.state.location,
         address: this.state.address,
         rating1: this.state.rating1,
@@ -93,6 +100,7 @@ class Review extends Component {
     .catch ( (err) => {
       axios.post('/api/review', {
         email: this.state.email,
+        icon: this.state.icon,
         location: this.state.location,
         address: this.state.address,
         rating1: this.state.rating1,
