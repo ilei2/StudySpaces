@@ -104,7 +104,8 @@ class Test extends Component {
                pathname: "/location",
                state: {
                  location: place.name,
-                 address: place.formatted_address
+                 address: place.formatted_address,
+                 photo: photourl
                }
              }}
            >

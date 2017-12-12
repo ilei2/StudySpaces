@@ -10,7 +10,8 @@ class Location extends Component {
     super(props);
     this.state = {
       location: props.location.state.location,
-      address: props.location.state.address
+      address: props.location.state.address,
+      photo: props.location.state.photourl
     }
   }
 
