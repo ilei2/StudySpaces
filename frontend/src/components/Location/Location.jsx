@@ -1,7 +1,10 @@
 'use strict'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Rating, Button } from 'semantic-ui-react';
+import {
+  Image,
+  Rating,
+  Button } from 'semantic-ui-react';
 
 import styles from './Location.scss';
 
@@ -11,18 +14,31 @@ class Location extends Component {
     this.state = {
       location: props.location.state.location,
       address: props.location.state.address,
-      photo: props.location.state.photourl
+      photo: props.location.state.photo
     }
   }
 
   render() {
     console.log("LOCATION PAGE: ");
-    console.log(this.props);
+
+    let photourl = '';
+
+    if (this.state.photo == undefined) {
+      //console.log(place.name + " is undefined");
+      photourl = '.../../assets/knifefork.png';
+    }
+    else {
+      let googlephoto = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
+      let key = '&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
+      photourl = googlephoto + this.state.photo[0].photo_reference + key;
+    }
+
+
     return (
       <div>
         <h1>{this.state.location}</h1>
         <h4>{this.state.address}</h4>
-        <h3>[Type of Place]</h3>
+        <Image src={photourl}/>
 
         <div className="location-rating">
           <div className="middle aligned grid">

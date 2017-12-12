@@ -105,7 +105,7 @@ class Test extends Component {
                state: {
                  location: place.name,
                  address: place.formatted_address,
-                 photo: photourl
+                 photo: place.photos
                }
              }}
            >
