@@ -85,7 +85,6 @@ class Test extends Component {
         // console.log(place.photos);
         // console.log("================================");
   /*      let photourl = '';
-
         if (place.photos == undefined) {
           //console.log(place.name + " is undefined");
           photourl = '.../../assets/knifefork.png';

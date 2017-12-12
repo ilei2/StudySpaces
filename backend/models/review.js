@@ -10,6 +10,7 @@ var ReviewSchema = mongoose.Schema({
     rating4 : {type: Number},
     text : {type: String},
     location : {type: String},
+    address : {type: String},
     dateCreated : {type: Date, default: Date.now}
 });
 
