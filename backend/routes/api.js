@@ -57,6 +57,17 @@ module.exports = function(router, passport) {
 	// GET review
 	reviewRoute.get(function(req, res) {
 		var query = Review.find();
+
+		var where = req.query.where;
+		var select = req.query.select;
+
+		if (where != null) {
+			query.where(JSON.parse(where));
+		}
+		if (select != null) {
+			query.select(JSON.parse(select));
+		}
+
 		query.exec(function(err, results) {
 			if (err) {
 				return res.status(404).json({message: "404: REVIEW NOT FOUND", data: []});
