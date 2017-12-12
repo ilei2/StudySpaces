@@ -62,7 +62,7 @@ class Test extends Component {
 
     var corsUrl = 'http://localhost:8081/';
     let googleapi = 'https://maps.googleapis.com/maps/api/place/textsearch/json?query=';
-    let apikey = '&key=AIzaSyBIuUAg4lyewx3yX2HnZmy1HB75P6k4F8M';
+    let apikey = '&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
 
     var newApiCall = corsUrl + googleapi + newSearch + apikey;
     axios.get(newApiCall).then((response) => {
@@ -84,7 +84,7 @@ class Test extends Component {
         // console.log(place.name);
         // console.log(place.photos);
         // console.log("================================");
-        let photourl = '';
+  /*      let photourl = '';
 
         if (place.photos == undefined) {
           //console.log(place.name + " is undefined");
@@ -92,15 +92,14 @@ class Test extends Component {
         }
         else {
           let googlephoto = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
-          let key = '&key=AIzaSyBIuUAg4lyewx3yX2HnZmy1HB75P6k4F8M';
+          let key = '&key=AIzaSyBDRH-amNMHWJgOXGFuASOFP7x7EOihKF0';
           photourl = googlephoto + place.photos[0].photo_reference + key;
         }
-
-        //'.../../assets/knifefork.png'
+*/
         return (
          <Grid.Column key={place.id}>
            <Card>
-             <Image centered size="medium" value={place.id} key={place.id} src={photourl} />
+             <Image centered size="medium" value={place.id} key={place.id} src=".../../assets/knifefork.png" />
              <Card.Content>
                <Card.Header>
                  <Link
