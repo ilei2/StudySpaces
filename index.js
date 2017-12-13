@@ -13,7 +13,7 @@ var cors_proxy = require('cors-anywhere');
 app.use(express.static('./backend/static/'));
 app.use(express.static('./frontend/dist/'));
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 var port2 = process.env.PORT || 8081;
 var host = process.env.HOST || '0.0.0.0';
 
