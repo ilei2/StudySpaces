@@ -13,8 +13,7 @@ var cors_proxy = require('cors-anywhere');
 app.use(express.static('./backend/static/'));
 app.use(express.static('./frontend/dist/'));
 
-
-var port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000
 var port2 = process.env.PORT || 8081;
 var host = process.env.HOST || '0.0.0.0';
 
@@ -32,7 +31,7 @@ cors_proxy.createServer({
   requireHeader: ['origin', 'x-requested-with'],
   removeHeaders: ['cookie', 'cookie2']
 }).listen(port2, host, function() {
-  console.log('Running CORS anywhere on' + host + ': ' + port);
+  console.log('Running CORS anywhere on' + host + ': ' + PORT);
 })
 
 
@@ -92,6 +91,6 @@ app.use('/api', require('./backend/routes/api')(router, passport));
 /* =========================================================================== */
 
 // start the server
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log('Server is running on http://localhost:3000 or http://127.0.0.1:3000');
 });
