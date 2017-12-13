@@ -92,10 +92,10 @@ class Location extends Component {
           }
           console.log("a: " + (a/res.data.data.length));
           this.setState({
-            r1: a/res.data.data.length,
-            r2: b/res.data.data.length,
-            r3: c/res.data.data.length,
-            r4: d/res.data.data.length
+            r1: Math.round(a/res.data.data.length * 100) / 100,
+            r2: Math.round(b/res.data.data.length * 100) / 100,
+            r3: Math.round(c/res.data.data.length * 100) / 100,
+            r4: Math.round(d/res.data.data.length * 100) / 100
           });
         }
       });
