@@ -79,23 +79,25 @@ class Location extends Component {
       .then( (res) => {
         // console.log("second api call:");
         // console.log(res.data.data);
-        let a = 0;
-        let b = 0;
-        let c = 0;
-        let d = 0;
-        for(let i=0; i<res.data.data.length; i++) {
-          a += res.data.data[i].rating1;
-          b += res.data.data[i].rating2;
-          c += res.data.data[i].rating3;
-          d += res.data.data[i].rating4;
+        if (res.data.data.length > 0) {
+          let a = 0;
+          let b = 0;
+          let c = 0;
+          let d = 0;
+          for(let i=0; i<res.data.data.length; i++) {
+            a += res.data.data[i].rating1;
+            b += res.data.data[i].rating2;
+            c += res.data.data[i].rating3;
+            d += res.data.data[i].rating4;
+          }
+          console.log("a: " + (a/res.data.data.length));
+          this.setState({
+            r1: a/res.data.data.length,
+            r2: b/res.data.data.length,
+            r3: c/res.data.data.length,
+            r4: d/res.data.data.length
+          });
         }
-        console.log("a: " + (a/res.data.data.length));
-        this.setState({
-          r1: a/res.data.data.length,
-          r2: b/res.data.data.length,
-          r3: c/res.data.data.length,
-          r4: d/res.data.data.length
-        });
       });
     })
   }

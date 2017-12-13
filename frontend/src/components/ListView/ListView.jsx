@@ -11,7 +11,7 @@ class ListView extends Component {
   render() {
     var list = numbers.map((number) => {
         return (
-          <Grid.Row container columns={4}>
+          <Grid.Row columns={4}>
             <Grid.Column>
               <Image src='.../../assets/knifefork.png' />
             </Grid.Column>

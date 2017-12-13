@@ -1,6 +1,7 @@
 'use strict'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import {
   Rating,
   Form,
@@ -78,6 +79,7 @@ class Review extends Component {
     axios.get(apiCall)
     .then ( (res) => {
       console.log(res.data.data.length);
+
       if (res.data.data.length == 0) {
         // POST new review
         console.log("POSTING NEW REVIEW: ");
@@ -104,6 +106,7 @@ class Review extends Component {
         .then ( (res) => {
           console.log("post success");
           console.log(res);
+          alert("Thanks for your review!");
         })
         .catch ( (err) => {
           console.log("post error");
@@ -127,6 +130,7 @@ class Review extends Component {
         })
         .then ( (res) => {
           console.log("PUT success");
+          alert("Your review has been updated!");
         })
         .catch ( (err) => {
           console.log(err);
@@ -153,6 +157,7 @@ class Review extends Component {
   }
 
   render() {
+
     return (
       <div>
         <h1>Reviewing {this.state.location}</h1>
@@ -264,10 +269,19 @@ class Review extends Component {
         </Form>
 
       </div>
-        <Button
-          className="blue"
-          onClick={this.submitReview}
-        >Submit</Button>
+        <Link to={{
+          pathname: "/location",
+          state: {
+            location: this.state.location,
+            address: this.state.address
+          }
+        }} >
+          <Button
+            className="blue"
+            onClick={this.submitReview}
+          >Submit
+        </Button>
+        </Link>
 
       </div>
     )
