@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom';
 import {
   Image,
   Rating,
-  Button } from 'semantic-ui-react';
+  Button,
+  Table,
+  Header,
+  Card,
+  Icon,
+  Dropdown,
+  List
+ } from 'semantic-ui-react';
 
 import axios from 'axios';
 import styles from './Location.scss';
@@ -15,30 +22,85 @@ class Location extends Component {
     this.state = {
       location: props.location.state.location,
       address: props.location.state.address,
-      email: ""
+      email: "",
+      results: []
     }
 
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/api/review')
-			.then( (res) => {
-	      this.setState({
-          email: res.data.user.email
-        });
-				console.log("CAN WRITE REVIEW :D " + res.data.user.email);
-	    })
-			.catch( (err) => {
-				console.log(err);
-	    })
+    let apiCall = '/api/review?where={"location": "' + this.state.location + '"';
+    apiCall = apiCall + ', "address": "' + this.state.address + '"}';
+    console.log(apiCall);
+
+    axios.get(apiCall)
+    .then( (res) => {
+      console.log(res);
+      this.setState({
+        results: res.data.data
+      });
+    })
   }
 
   render() {
+    let output = this.state.results;
+    if (output != undefined && output.length > 0) {
+      output = this.state.results.map((review) => {
+        return (
+          <Table.Row>
+            <Table.Cell singleLine><b>{review.dateCreated}</b></Table.Cell>
+            <Table.Cell singleLine><b>{review.email}</b></Table.Cell>
+            <Table.Cell textAlign='center'>
+              <List verticalAlign='middle'>
+                <List.Item>Quiet</List.Item>
+                <Rating icon='star' defaultRating={review.rating1} maxRating={5} disabled/> <br/>
+                <List.Item>Wifi</List.Item>
+                <Rating icon='star' defaultRating={review.rating2} maxRating={5} disabled/> <br/>
+                <List.Item>Group</List.Item>
+                <Rating icon='star' defaultRating={review.rating3} maxRating={5} disabled/> <br/>
+                <List.Item>Other</List.Item>
+                <Rating icon='star' defaultRating={review.rating4} maxRating={5} disabled/> <br/>
+              </List>
+            </Table.Cell>
+            <Table.Cell>
+              {review.text}
+            </Table.Cell>
+          </Table.Row>
+        )
+      });
+    } else {
+      output =
+        <Table.Row>
+          <Table.Cell>
+            <Header textAlign='center'>No Reviews for this location.</Header>
+          </Table.Cell>
+        </Table.Row>
+    }
+
+
     return (
       <div>
         <h1>{this.state.location}</h1>
         <h4>{this.state.address}</h4>
+
+        <div className="location-btn">
+          <Link
+            to={{
+              pathname: "/review",
+              state: {
+                location: this.state.location,
+                address: this.state.address
+              }
+            }}
+          >
+            <Button
+              className="ui blue"
+              >
+              Submit a review for this location!
+            </Button>
+          </Link>
+        </div>
 
         <div className="location-rating">
           <div className="middle aligned grid">
@@ -124,23 +186,27 @@ class Location extends Component {
           </div>
         </div>
 
-        <div className="location-btn">
-          <Link
-            to={{
-              pathname: "/review",
-              state: {
-                location: this.state.location,
-                address: this.state.address
-              }
-            }}
-          >
-            <Button
-              className="ui blue"
-              >
-              Submit a review for this location!
-            </Button>
-          </Link>
+
+        <div className="ui container center aligned">
+             <Table celled padded color="teal" striped>
+               <Table.Header>
+                 <Table.Row>
+                   <Table.HeaderCell singleLine>Date</Table.HeaderCell>
+                   <Table.HeaderCell>Username</Table.HeaderCell>
+                   <Table.HeaderCell>Ratings</Table.HeaderCell>
+                   <Table.HeaderCell>Reviews</Table.HeaderCell>
+                 </Table.Row>
+               </Table.Header>
+
+               <Table.Body>
+                 {output}
+               </Table.Body>
+             </Table>
+             <br/>
         </div>
+
+
+
       </div>
     )
   }
