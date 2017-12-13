@@ -122,7 +122,8 @@ class Home extends Component {
       return (
         <div className="home-text">
           <NavBar/>
-          <h1>Home Component</h1>
+          <h1 id="header">StudySpaces</h1>
+          <h5>Looking for a place to do work? Find one here, and leave a review!</h5>
           <Input
             placeholder='i.e. Cafes in Champaign'
             size='massive'
@@ -140,7 +141,7 @@ class Home extends Component {
             <br/>
             <Header size='medium' color='teal' >Results</Header>
             <br/>
-            <span>whitespace</span>
+            <br/>
             <Grid centered className="placeList" relaxed columns={4}>
               <Grid.Row>
                   {results}

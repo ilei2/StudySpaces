@@ -116,17 +116,17 @@ class Location extends Component {
       output = this.state.results.map((review) => {
         return (
           <Table.Row>
-            <Table.Cell singleLine><b>{review.dateCreated}</b></Table.Cell>
+            <Table.Cell textAlign="center">{review.dateCreated}</Table.Cell>
             <Table.Cell singleLine><b>{review.email}</b></Table.Cell>
             <Table.Cell textAlign='center'>
               <List verticalAlign='middle'>
-                <List.Item>Quiet</List.Item>
+                <List.Item>Quietness</List.Item>
                 <Rating icon='star' defaultRating={review.rating1} maxRating={5} disabled/> <br/>
-                <List.Item>Wifi</List.Item>
+                <List.Item>Wi-Fi</List.Item>
                 <Rating icon='star' defaultRating={review.rating2} maxRating={5} disabled/> <br/>
-                <List.Item>Group</List.Item>
+                <List.Item>Food</List.Item>
                 <Rating icon='star' defaultRating={review.rating3} maxRating={5} disabled/> <br/>
-                <List.Item>Other</List.Item>
+                <List.Item>Open Late</List.Item>
                 <Rating icon='star' defaultRating={review.rating4} maxRating={5} disabled/> <br/>
               </List>
             </Table.Cell>
