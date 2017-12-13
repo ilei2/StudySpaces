@@ -10,7 +10,8 @@ import {
   Card,
   Icon,
   Dropdown,
-  List
+  List,
+  Popup
  } from 'semantic-ui-react';
 
 import axios from 'axios';
@@ -23,7 +24,12 @@ class Location extends Component {
       location: props.location.state.location,
       address: props.location.state.address,
       email: "",
-      results: []
+      results: [],
+      avgs: [],
+      r1: 0,
+      r2: 0,
+      r3: 0,
+      r4: 0
     }
 
     this.componentDidMount = this.componentDidMount.bind(this);
@@ -36,16 +42,75 @@ class Location extends Component {
 
     axios.get(apiCall)
     .then( (res) => {
-      console.log(res);
+      // let avg1 = 3;
+      // let avg2 = 3;
+      // let avg3 = 3;
+      // let avg4 = 3;
+      // if (res.data.data != undefined && res.data.data.length > 0) {
+      //   let data = res.data.data;
+      //   avg1 = 0;
+      //   avg2 = 0;
+      //   avg3 = 0;
+      //   avg4 = 0;
+      //   for (let i = 0; i < data.length; i++) {
+      //     avg1 += data[i].rating1;
+      //     avg2 += data[i].rating2;
+      //     avg3 += data[i].rating3;
+      //     avg4 += data[i].rating4;
+      //   }
+      //   avg1 /= data.length;
+      //   avg2 /= data.length;
+      //   avg3 /= data.length;
+      //   avg4 /= data.length;
+      //   console.log(avg3);
+      // }
       this.setState({
-        results: res.data.data
+        results: res.data.data,
+      })
+    })
+    .then ( () => {
+      let where = '/api/review?where={"location": "' + this.state.location + '"';
+      where = where + ', "address": "' + this.state.address + '"}';
+      let select = '&select={"rating1": 1, "rating2": 1, "rating3": 1, "rating4": 1,"_id" : 0}';
+      let secondAPICall = where + select;
+      console.log(secondAPICall);
+
+      axios.get(secondAPICall)
+      .then( (res) => {
+        // console.log("second api call:");
+        // console.log(res.data.data);
+        let a = 0;
+        let b = 0;
+        let c = 0;
+        let d = 0;
+        for(let i=0; i<res.data.data.length; i++) {
+          a += res.data.data[i].rating1;
+          b += res.data.data[i].rating2;
+          c += res.data.data[i].rating3;
+          d += res.data.data[i].rating4;
+        }
+        console.log("a: " + (a/res.data.data.length));
+        this.setState({
+          r1: a/res.data.data.length,
+          r2: b/res.data.data.length,
+          r3: c/res.data.data.length,
+          r4: d/res.data.data.length
+        });
       });
     })
   }
 
   render() {
     let output = this.state.results;
+    console.log(this.state.avgs);
+    console.log("Actual results:");
+    console.log(this.state.r1);
+    console.log(this.state.r2);
+    console.log(this.state.r3);
+    console.log(this.state.r4);
+
     if (output != undefined && output.length > 0) {
+
       output = this.state.results.map((review) => {
         return (
           <Table.Row>
@@ -112,14 +177,11 @@ class Location extends Component {
                   <div className="ui item">
                     <div className="middle aligned content">
                       <div className="header">
-                        Rating 1
+                        <Popup
+                          trigger={<Button>Quietness: {this.state.r1}</Button>}
+                          content='1 star: very loud 5 star: very quiet'
+                        />
                       </div>
-                      <Rating
-                        className="ui star"
-                        defaultRating={3}
-                        maxRating={5}
-                        disabled
-                      />
                     </div>
                   </div>
                 </div>
@@ -130,14 +192,11 @@ class Location extends Component {
                     <div className="ui item">
                       <div className="middle aligned content">
                         <div className="header">
-                          Rating 2
+                          <Popup
+                            trigger={<Button>Wi-Fi Strength: {this.state.r2}</Button>}
+                            content='1 star: no wi-fi 5 star: great wi-fi'
+                          />
                         </div>
-                        <Rating
-                          className="ui star"
-                          defaultRating={3}
-                          maxRating={5}
-                          disabled
-                        />
                       </div>
                     </div>
                   </div>
@@ -150,14 +209,11 @@ class Location extends Component {
                   <div className="ui item">
                     <div className="middle aligned content">
                       <div className="header">
-                        Rating 3
+                        <Popup
+                          trigger={<Button>Food Availability: {this.state.r3}</Button>}
+                          content='1 star: no nearby food 5 star: food in building'
+                        />
                       </div>
-                      <Rating
-                        className="ui star"
-                        defaultRating={3}
-                        maxRating={5}
-                        disabled
-                      />
                     </div>
                   </div>
                 </div>
@@ -168,14 +224,12 @@ class Location extends Component {
                     <div className="ui item">
                       <div className="middle aligned content">
                         <div className="header">
-                          Rating 4
+                          <Popup
+                            trigger={<Button>Open Late: {this.state.r4}</Button>}
+                            content='1 star: closes 3pm or earlier 5 star: open 12pm or later'
+                          />
                         </div>
-                        <Rating
-                          className="ui star"
-                          defaultRating={3}
-                          maxRating={5}
-                          disabled
-                        />
+
                       </div>
                     </div>
                   </div>
