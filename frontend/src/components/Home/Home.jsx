@@ -156,8 +156,6 @@ class Home extends Component {
                 Submit
             </Button>
             <br/>
-            <Header size='medium' color='teal' >Results</Header>
-            <br/>
             <br/>
            <List relaxed celled verticalAlign="middle">
              {results}

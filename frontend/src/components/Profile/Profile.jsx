@@ -100,13 +100,6 @@ class Profile extends Component {
             <h1>{this.state.email}</h1>
           </Header>
            <br/>
-             <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
-               <Dropdown.Menu>
-                 <Dropdown.Item>Rating</Dropdown.Item>
-                 <Dropdown.Item>Date Updated</Dropdown.Item>
-               </Dropdown.Menu>
-             </Dropdown>
-
            <Table celled padded color="teal" striped>
              <Table.Header>
                <Table.Row>
