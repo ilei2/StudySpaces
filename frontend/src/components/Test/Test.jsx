@@ -58,6 +58,7 @@ class Test extends Component {
     console.log("Search text:");
     console.log(this.state.search);
     let newSearch = this.state.search.replace(/ /g, '+');
+    console.log("updated search...");
     console.log(newSearch);
 
     var corsUrl = 'http://localhost:8081/';

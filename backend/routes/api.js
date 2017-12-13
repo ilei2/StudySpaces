@@ -78,14 +78,17 @@ module.exports = function(router, passport) {
 
 	//POST a new review
 	reviewRoute.post(function(req, res) {
+		console.log(req.body.email);
 		var newReview = new Review({
 			email: req.body.email,
+			icon: req.body.icon,
 			rating1: req.body.rating1,
 			rating2: req.body.rating2,
 			rating3: req.body.rating3,
 			rating4: req.body.rating4,
 			text: req.body.text,
-			location: req.body.location
+			location: req.body.location,
+			address: req.body.address
 		});
 		newReview.save(function(err) {
 			if (err) {

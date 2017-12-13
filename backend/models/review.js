@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 
 // Define Review Schema
 var ReviewSchema = mongoose.Schema({
-    email		: {type: String, required: true, unique: true},
+    email		: {type: String},
     icon : {type: String},
     rating1 : {type: Number},
     rating2 : {type: Number},

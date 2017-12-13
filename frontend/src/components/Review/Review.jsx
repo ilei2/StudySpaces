@@ -63,67 +63,93 @@ class Review extends Component {
     });
   }
 
-  submitReview(e, {value}) {
-    console.log(this.state.location);
-    console.log(this.state.rating1);
-    console.log(this.state.rating2);
-    console.log(this.state.rating3);
-    console.log(this.state.rating4);
-    console.log(this.state.text);
+  submitReview(e) {
+    e.preventDefault();
+
+    let apiCall = '/api/review?where={"email": "' + this.state.email + '"';
+    apiCall = apiCall + ', "address": "' + this.state.address + '"}';
+    console.log(apiCall);
 
     let firstChar = this.state.email.charAt(0);
     let charVal = (firstChar.charCodeAt(0)-96) % 10;
     let profileIcon = charVal.toString() + ".png";
     console.log(profileIcon);
 
-    axios.get('/api/review', {
-      params: {
-        email: this.state.email,
-        address: this.state.address
+    axios.get(apiCall)
+    .then ( (res) => {
+      console.log(res.data.data.length);
+      if (res.data.data.length == 0) {
+        // POST new review
+        console.log("POSTING NEW REVIEW: ");
+        console.log(this.state.email);
+        console.log(profileIcon);
+        console.log(this.state.location);
+        console.log(this.state.address);
+        console.log(this.state.rating1);
+        console.log(this.state.rating2);
+        console.log(this.state.rating3);
+        console.log(this.state.rating4);
+        console.log(this.state.text);
+        axios.post('/api/review', {
+          email: this.state.email,
+          icon: profileIcon,
+          location: this.state.location,
+          address: this.state.address,
+          rating1: this.state.rating1,
+          rating2: this.state.rating2,
+          rating3: this.state.rating3,
+          rating4: this.state.rating4,
+          text: this.state.text
+        })
+        .then ( (res) => {
+          console.log("post success");
+          console.log(res);
+        })
+        .catch ( (err) => {
+          console.log("post error");
+          console.log(err);
+        })
+      }
+      else {
+        console.log("updating a review");
+        let id = res.data.data[0]._id;
+        console.log(id);
+        axios.put('/api/review/'+id, {
+          email: this.state.email,
+          icon: profileIcon,
+          location: this.state.location,
+          address: this.state.address,
+          rating1: this.state.rating1,
+          rating2: this.state.rating2,
+          rating3: this.state.rating3,
+          rating4: this.state.rating4,
+          text: this.state.text
+        })
+        .then ( (res) => {
+          console.log("PUT success");
+        })
+        .catch ( (err) => {
+          console.log(err);
+        })
       }
     })
-    .then( (res) => {
-      let id = res.data.data[0]._id;
-      console.log(id);
-      axios.put('/api/review/'+id, {
-        email: this.state.email,
-        icon: this.state.icon,
-        location: this.state.location,
-        address: this.state.address,
-        rating1: this.state.rating1,
-        rating2: this.state.rating2,
-        rating3: this.state.rating3,
-        rating4: this.state.rating4,
-        text: this.state.text
-      })
-    })
     .catch ( (err) => {
-      axios.post('/api/review', {
-        email: this.state.email,
-        icon: this.state.icon,
-        location: this.state.location,
-        address: this.state.address,
-        rating1: this.state.rating1,
-        rating2: this.state.rating2,
-        rating3: this.state.rating3,
-        rating4: this.state.rating4,
-        text: this.state.text
-      })
+      console.log(err);
     })
-
   }
 
   componentDidMount() {
+    console.log("inside ComponentDidMount");
     axios.get('/api/profile')
 			.then( (res) => {
 	      this.setState({
           email: res.data.user.email
         });
-				console.log("CAN WRITE REVIEW :D " + res.data.user.email);
+				console.log("user can review: " + res.data.user.email);
 	    })
 			.catch( (err) => {
 				console.log(err);
-	    })
+	    });
   }
 
   render() {
