@@ -14,7 +14,8 @@ import {
   Icon,
   Grid,
   Card,
-  Header
+  Header,
+  Item
  }
 from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -89,8 +90,31 @@ class Home extends Component {
           }
   */
           return (
-           <Grid.Column key={place.id}>
-               <img value={place.id} key={place.id} src=".../../assets/locationIcon.png" />
+            <List.Item>
+              <Image size="small" src='.../../assets/locationIcon.png' />
+              <List.Content>
+                <List.Description></List.Description>
+                <List.Header>
+                  <Link
+                      to={{
+                        pathname: "/location",
+                        state: {
+                          location: place.name,
+                          address: place.formatted_address,
+                          photo: place.photos
+                        }
+                      }}
+                    >
+                    {place.name}
+                    </Link>
+                </List.Header>
+                {place.formatted_address}
+              </List.Content>
+              <br/>
+            </List.Item>
+
+    /*       <Grid.Column key={place.id}>
+             <img id="placeImage" value={place.id} key={place.id} src=".../../assets/locationIcon.png" />
                <br/>
                  <Link
                      to={{
@@ -108,9 +132,8 @@ class Home extends Component {
                   {place.formatted_address}
              <br/>
              <br/>
-
          </Grid.Column>
-
+*/
           )
         });
       return (
@@ -136,11 +159,9 @@ class Home extends Component {
             <Header size='medium' color='teal' >Results</Header>
             <br/>
             <br/>
-            <Grid centered className="placeList" relaxed columns={4}>
-              <Grid.Row>
-                  {results}
-            </Grid.Row>
-          </Grid>
+           <List relaxed celled verticalAlign="middle">
+             {results}
+           </List>
         </div>
 
     )
