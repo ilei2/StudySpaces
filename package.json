@@ -2,9 +2,6 @@
   "name": "Study_Spaces",
   "version": "1.0.0",
   "description": "",
-  "engines": {
-    "node": "8.8.0"
-  },
   "main": "bundle.js",
   "scripts": {
     "watch": "webpack -d --watch",
