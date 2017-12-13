@@ -13,7 +13,7 @@ var cors_proxy = require('cors-anywhere');
 app.use(express.static('./backend/static/'));
 app.use(express.static('./frontend/dist/'));
 
-var port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 var port2 = process.env.PORT || 8081;
 var host = process.env.HOST || '0.0.0.0';
 
@@ -95,6 +95,6 @@ app.use('/api', require('./backend/routes/api')(router, passport));
   console.log('Server is running on http://localhost:3000 or http://127.0.0.1:3000');
 }); */
 
-app.listen(port ,function(){
-    console.log("up and running on port "+process.env.PORT);
+app.listen(PORT ,function(){
+    console.log("up and running on port "+PORT);
 });

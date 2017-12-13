@@ -90,11 +90,9 @@ class Home extends Component {
   */
           return (
            <Grid.Column key={place.id}>
-             <Card>
-               <Image centered size="medium" value={place.id} key={place.id} src=".../../assets/knifefork.png" />
-               <Card.Content>
-                 <Card.Header>
-                   <Link
+               <img value={place.id} key={place.id} src=".../../assets/locationIcon.png" />
+               <br/>
+                 <Link
                      to={{
                        pathname: "/location",
                        state: {
@@ -106,12 +104,8 @@ class Home extends Component {
                    >
                    {place.name}
                    </Link>
-                 </Card.Header>
-                 <Card.Description>
+                   <br/>
                   {place.formatted_address}
-                 </Card.Description>
-               </Card.Content>
-             </Card>
              <br/>
              <br/>
 
