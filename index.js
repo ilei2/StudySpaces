@@ -31,7 +31,7 @@ cors_proxy.createServer({
   requireHeader: ['origin', 'x-requested-with'],
   removeHeaders: ['cookie', 'cookie2']
 }).listen(port2, host, function() {
-  console.log('Running CORS anywhere on' + host + ': ' + PORT);
+  console.log('Running CORS anywhere on' + host + ': ' + port2);
 })
 
 
@@ -94,6 +94,7 @@ app.use('/api', require('./backend/routes/api')(router, passport));
 /*app.listen(PORT, () => {
   console.log('Server is running on http://localhost:3000 or http://127.0.0.1:3000');
 }); */
-app.listen(port || 3000 ,function(){
+
+app.listen(port ,function(){
     console.log("up and running on port "+process.env.PORT);
 });
