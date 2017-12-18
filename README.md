@@ -1,7 +1,7 @@
 # StudySpace
 Best places to study on UIUC campus
 
-#12/18
+# 12/18
 ### Completed
 - finally deployed on Heroku!
 
@@ -21,7 +21,7 @@ Best places to study on UIUC campus
 ### To do
 - Implement API: Michelle
 
-###In Progress
+### In Progress
 - Gallery Structure: Jasmine
 
 # 12/6
