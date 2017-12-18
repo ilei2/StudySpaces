@@ -1,0 +1,20 @@
+body {
+  text-align: center
+}
+#header {
+  font-size: 4em;
+}
+
+.home-submit-btn {
+  padding: 1em;
+	color: grey;
+}
+.home-form {
+  padding: 1em;
+}
+.home-text {
+  text-align: center;
+}
+#placeImage {
+    background-color: powderblue;
+}

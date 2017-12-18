@@ -1,9 +1,13 @@
-.DS_Store
-.idea/
-.idea/*
-.vs_code/
-.vs_code/*
+# Node build artifacts
 node_modules
 node_modules/*
-frontend/dist
-frontend/dist/*
+npm-debug.log
+
+# Local development
+*.env
+*.dev
+.DS_Store
+
+# Docker
+Dockerfile
+docker-compose.yml

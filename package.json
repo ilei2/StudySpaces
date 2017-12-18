@@ -1,62 +1,35 @@
 {
-  "name": "Study_Spaces",
+  "name": "study_spaces",
   "version": "1.0.0",
-  "description": "",
-  "main": "bundle.js",
+  "description": "Best places to study on UIUC campus",
   "scripts": {
-    "watch": "webpack -d --watch",
-    "build": "webpack",
-    "start": "nodemon --use_strict index.js",
-    "dev": "webpack-dev-server --content-base frontend/dist/ --history-api-fallback"
+    "start": "node server",
+    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
-  "author": "To Be Added Later",
-  "devDependencies": {
-    "autoprefixer": "^6.7.7",
-    "babel-core": "^6.24.0",
-    "babel-loader": "^6.4.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.0",
-    "babel-preset-react": "^6.23.0",
-    "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.27.3",
-    "node-sass": "^4.5.2",
-    "postcss-loader": "^1.3.3",
-    "sass-loader": "^6.0.3",
-    "style-loader": "^0.16.1",
-    "webpack": "^2.3.2",
-    "webpack-dev-server": "^2.4.2"
-  },
-  "babel": {
-    "presets": [
-      "env",
-      "react"
-    ]
-  },
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
   "dependencies": {
-    "axios": "^0.16.2",
-    "bcrypt": "^1.0.3",
-    "body-parser": "^1.17.2",
-    "cookie-parser": "^1.4.3",
-    "cookie-session": "^2.0.0-beta.3",
-    "cors-anywhere": "^0.4.1",
-    "express": "^4.15.3",
-    "express-session": "^1.15.6",
-    "google-maps-react": "^1.1.2",
-    "jsonwebtoken": "^8.1.0",
-    "lodash": "^4.17.4",
-    "mongoose": "^4.10.0",
-    "node": "^9.2.0",
-    "node.js": "0.0.0",
-    "nodemon": "^1.11.0",
-    "normalize.css": "^6.0.0",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-router": "^4.0.0",
-    "react-router-dom": "^4.0.0",
-    "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.74.2",
-    "validator": "^9.1.1"
-  }
+    "bcrypt": "1.0.3",
+    "body-parser": "1.18.2",
+    "cookie-parser": "1.4.3",
+    "cookie-session": "2.0.0-beta.3",
+    "express": "^4.14.1",
+    "mongoose": "4.13.7",
+    "passport": "0.4.0",
+    "passport-local": "1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mars/heroku-cra-node.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ],
+  "license": "MIT",
+  "devDependencies": {}
 }
